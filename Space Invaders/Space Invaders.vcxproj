@@ -22,6 +22,7 @@
     <ClInclude Include="headers\Game.h" />
     <ClInclude Include="headers\ResourceManager.h" />
     <ClInclude Include="headers\Shader.h" />
+    <ClInclude Include="headers\SpriteRenderer.h" />
     <ClInclude Include="headers\stb_image.h" />
     <ClInclude Include="headers\Texture.h" />
   </ItemGroup>
@@ -31,8 +32,16 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\ResourceManager.cpp" />
     <ClCompile Include="source\Shader.cpp" />
+    <ClCompile Include="source\SpriteRenderer.cpp" />
     <ClCompile Include="source\stb_image.cpp" />
     <ClCompile Include="source\Texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\sprite.fs" />
+    <None Include="resources\shaders\sprite.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\awesomeface.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -87,7 +96,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;$(IncludePath)</IncludePath>
+    <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;C:\Users\micha\source\repos\Space Invaders\Space Invaders\resources;$(IncludePath)</IncludePath>
     <LibraryPath>C:\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

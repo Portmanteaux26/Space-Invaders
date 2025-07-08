@@ -20,16 +20,16 @@ public:
 	// loads shader program
 	static Shader LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name);
 	// gets stored shader
-	static Shader GetShader(std::string name);
+	static Shader& GetShader(std::string name);
 	// loads texture
 	static Texture2D LoadTexture(const char* file, bool alpha, std::string name);
 	// gets stored texture
-	static Texture2D GetTexture(std::string name);
+	static Texture2D& GetTexture(std::string name);
 	// cleans up
 	static void Clear();
 private:
 	// private constructor
-	ResourceManager() {}
+	ResourceManager() { }
 	// loads shader from file
 	static Shader loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile = nullptr);
 	//loads texture from file

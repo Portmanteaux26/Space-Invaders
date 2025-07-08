@@ -17,7 +17,7 @@ Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderF
 	Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 	return Shaders[name];
 }
-Shader ResourceManager::GetShader(std::string name)
+Shader& ResourceManager::GetShader(std::string name)
 {
 	return Shaders[name];
 }
@@ -26,7 +26,7 @@ Texture2D ResourceManager::LoadTexture(const char* file, bool alpha, std::string
 	Textures[name] = loadTextureFromFile(file, alpha);
 	return Textures[name];
 }
-Texture2D ResourceManager::GetTexture(std::string name)
+Texture2D& ResourceManager::GetTexture(std::string name)
 {
 	return Textures[name];
 }
@@ -42,6 +42,9 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
 		std::ifstream vertexShaderFile(vShaderFile);
 		std::ifstream fragmentShaderFile(fShaderFile);
 		std::stringstream vShaderStream, fShaderStream;
+		// ensure ifstreams can throw exceptions
+		vertexShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+		fragmentShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		// read buffers into streams
 		vShaderStream << vertexShaderFile.rdbuf();
 		fShaderStream << fragmentShaderFile.rdbuf();
@@ -63,7 +66,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
 	}
 	catch (std::exception e)
 	{
-		std::cout << "ERROR::SHADER: Failed to read shader files" << std::endl;
+		std::cout << "ERROR::SHADER: Failed to read shader files" << "\n" << std::endl;
 	}
 	const char* vShaderCode = vertexCode.c_str();
 	const char* fShaderCode = fragmentCode.c_str();
