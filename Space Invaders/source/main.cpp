@@ -17,7 +17,7 @@ const unsigned int SCREEN_HEIGHT = 600;
 
 Game SpaceInvaders(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-int main(int arc, char* argv[])
+int main(int argc, char* argv[])
 {
 	// intialize and configure window
 	glfwInit();

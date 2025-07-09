@@ -23,7 +23,7 @@ void Game::Init()
 	ResourceManager::LoadShader("resources/shaders/sprite.vs", "resources/shaders/sprite.fs", nullptr, "sprite");
 	// configure
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width), static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
-	Shader spriteShader = ResourceManager::GetShader("sprite");
+	Shader& spriteShader = ResourceManager::GetShader("sprite");
 	spriteShader.Use().SetInteger("image", 0);
 	spriteShader.SetMatrix4("projection", projection);
 	Renderer = new SpriteRenderer(spriteShader);
@@ -43,5 +43,6 @@ void Game::ProcessInput(float dt)
 
 void Game::Render()
 {
-	Renderer->DrawSprite(ResourceManager::GetTexture("face"), glm::vec2(200.0f, 200.0f), glm::vec2(300.0f, 400.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	Texture2D& face = ResourceManager::GetTexture("face");
+	Renderer->DrawSprite(face, glm::vec2(200.0f, 200.0f), glm::vec2(300.0f, 400.0f), 45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 }
