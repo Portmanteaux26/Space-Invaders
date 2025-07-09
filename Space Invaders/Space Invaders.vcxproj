@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\awesomeface.png" />
+    <Image Include="resources\textures\background.jpg" />
+    <Image Include="resources\textures\paddle.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

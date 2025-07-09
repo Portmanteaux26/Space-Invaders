@@ -44,10 +44,10 @@ Texture2D ResourceManager::GetTexture(std::string name)
 void ResourceManager::Clear()
 {
     // (properly) delete all shaders	
-    for (auto iter : Shaders)
+    for (auto& iter : Shaders)
         glDeleteProgram(iter.second.ID);
     // (properly) delete all textures
-    for (auto iter : Textures)
+    for (auto& iter : Textures)
         glDeleteTextures(1, &iter.second.ID);
 }
 
