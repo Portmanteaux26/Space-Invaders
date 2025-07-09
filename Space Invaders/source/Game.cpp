@@ -23,9 +23,10 @@ void Game::Init()
 	ResourceManager::LoadShader("resources/shaders/sprite.vs", "resources/shaders/sprite.fs", nullptr, "sprite");
 	// configure
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width), static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
-	ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
-	ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
-	Renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
+	Shader spriteShader = ResourceManager::GetShader("sprite");
+	spriteShader.Use().SetInteger("image", 0);
+	spriteShader.SetMatrix4("projection", projection);
+	Renderer = new SpriteRenderer(spriteShader);
 	// load textures
 	ResourceManager::LoadTexture("resources/textures/awesomeface.png", true, "face");
 }

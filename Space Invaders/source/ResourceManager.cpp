@@ -17,7 +17,7 @@ Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderF
 	Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
 	return Shaders[name];
 }
-Shader& ResourceManager::GetShader(std::string name)
+Shader ResourceManager::GetShader(std::string name)
 {
 	return Shaders[name];
 }
@@ -100,11 +100,11 @@ Texture2D ResourceManager::loadTextureFromFile(const char* file, bool alpha)
 
 void ResourceManager::Clear()
 {
-	for (auto iter : Shaders)
+	for (auto& iter : Shaders)
 	{
 		glDeleteProgram(iter.second.ID);
 	}
-	for (auto iter : Textures)
+	for (auto& iter : Textures)
 	{
 		glDeleteTextures(1, &iter.second.ID);
 	}

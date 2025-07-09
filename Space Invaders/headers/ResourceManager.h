@@ -20,7 +20,7 @@ public:
 	// loads shader program
 	static Shader LoadShader(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile, std::string name);
 	// gets stored shader
-	static Shader& GetShader(std::string name);
+	static Shader GetShader(std::string name);
 	// loads texture
 	static Texture2D LoadTexture(const char* file, bool alpha, std::string name);
 	// gets stored texture
