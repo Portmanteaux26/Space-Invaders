@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Game.h" />
+    <ClInclude Include="headers\GameObject.h" />
     <ClInclude Include="headers\ResourceManager.h" />
     <ClInclude Include="headers\Shader.h" />
     <ClInclude Include="headers\SpriteRenderer.h" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\ResourceManager.cpp" />
@@ -42,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\awesomeface.png" />
-    <Image Include="resources\textures\background.jpg" />
     <Image Include="resources\textures\paddle.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
