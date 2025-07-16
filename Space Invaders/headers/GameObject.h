@@ -10,16 +10,6 @@
 
 class GameObject
 {
-private:
-    // object state
-    glm::vec2 Velocity = glm::vec2(0.0f);
-    glm::vec3 Color = glm::vec3(1.0f);
-    float Rotation = 0.0f;
-    bool  IsSolid = false;
-    bool  Destroyed = false;
-    // render state
-    const Texture2D& Sprite;
-
 public:
     // object state
     glm::vec2 Position = glm::vec2(0.0f, 0.0f);
@@ -35,6 +25,16 @@ public:
     );
     // draws sprite
     virtual void Draw(SpriteRenderer& renderer);
+
+private:
+    // object state
+    glm::vec2 Velocity;
+    glm::vec3 Color;
+    float Rotation = 0.0f;
+    bool  IsSolid = false;
+    bool  Destroyed = false;
+    // render state
+    const Texture2D& Sprite;
 };
 
 #endif
