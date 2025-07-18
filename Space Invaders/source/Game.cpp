@@ -42,10 +42,10 @@ void Game::Update(float dt)
 
 void Game::ProcessInput(float dt) const
 {
-    float right_bound = this->Width - Player->Size.x;
 
     if (this->State == GAME_ACTIVE)
     {
+        float right_bound = this->Width - Player->Size.x;
         float velocity = PLAYER_VELOCITY * dt;
         // move playerboard
         if (this->Keys[GLFW_KEY_A]) // move left
