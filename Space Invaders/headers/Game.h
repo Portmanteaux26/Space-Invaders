@@ -27,7 +27,7 @@ class Game
 public:
     // game state
     GameState           State;
-    bool                Keys[1024];
+    bool                Keys[256];
     const unsigned int  Width, Height;
     SpriteRenderer*     Renderer;
     GameObject*         Player;

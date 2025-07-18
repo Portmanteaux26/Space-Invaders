@@ -23,8 +23,7 @@ void Game::Init()
     // load shaders
     ResourceManager::LoadShader("resources/shaders/sprite.vs", "resources/shaders/sprite.fs", nullptr, "sprite");
     // configure shaders
-    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width),
-        static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
+    glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(this->Width), static_cast<float>(this->Height), 0.0f, -1.0f, 1.0f);
     ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
     ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
     // set render-specific controls
@@ -43,19 +42,33 @@ void Game::Update(float dt)
 
 void Game::ProcessInput(float dt) const
 {
+    float right_bound = this->Width - Player->Size.x;
+
     if (this->State == GAME_ACTIVE)
     {
         float velocity = PLAYER_VELOCITY * dt;
         // move playerboard
-        if (this->Keys[GLFW_KEY_A])
+        if (this->Keys[GLFW_KEY_A]) // move left
         {
-            if (Player->Position.x >= 0.0f)
+            if (Player->Position.x <= 0.0f)
+            {
+                Player->Position.x = 0.0f;
+            }
+            else
+            {
                 Player->Position.x -= velocity;
+            }
         }
-        if (this->Keys[GLFW_KEY_D])
+        if (this->Keys[GLFW_KEY_D]) // move right
         {
-            if (Player->Position.x <= this->Width - Player->Size.x)
+            if (Player->Position.x >= right_bound)
+            {
+                Player->Position.x = right_bound;
+            }
+            else
+            {
                 Player->Position.x += velocity;
+            }
         }
     }
 }
