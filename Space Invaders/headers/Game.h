@@ -5,6 +5,9 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "GameObject.h"
+#include "SpriteRenderer.h"
+
 
 // Represents the current state of the game
 const enum GameState
@@ -23,9 +26,11 @@ class Game
 {
 public:
     // game state
-    GameState               State;
-    bool                    Keys[1024];
-    const unsigned int      Width, Height;
+    GameState           State;
+    bool                Keys[1024];
+    const unsigned int  Width, Height;
+    SpriteRenderer*     Renderer;
+    GameObject*         Player;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();
@@ -37,7 +42,6 @@ public:
     void Render() const;
 
 private:
-
 };
 
 #endif

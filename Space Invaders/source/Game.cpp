@@ -1,12 +1,7 @@
 #include "Game.h"
+#include "GameObject.h"
 #include "ResourceManager.h"
 #include "SpriteRenderer.h"
-#include "GameObject.h"
-
-
-// Game-related State data
-SpriteRenderer* Renderer;
-GameObject* Player;
 
 
 Game::Game(unsigned int width, unsigned int height)
@@ -15,7 +10,7 @@ Game::Game(unsigned int width, unsigned int height)
     , Width(width)
     , Height(height)
 {
-
+    
 }
 
 Game::~Game()
