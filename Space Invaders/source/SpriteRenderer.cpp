@@ -1,11 +1,3 @@
-/*******************************************************************
-** This code is part of Breakout.
-**
-** Breakout is free software: you can redistribute it and/or modify
-** it under the terms of the CC BY 4.0 license as published by
-** Creative Commons, either version 4 of the License, or (at your
-** option) any later version.
-******************************************************************/
 #include "SpriteRenderer.h"
 
 
@@ -50,7 +42,8 @@ void SpriteRenderer::initRenderData()
 {
     // configure VAO/VBO
     unsigned int VBO;
-    float vertices[] = {
+    float vertices[] =
+    {
         // pos      // tex
         0.0f, 1.0f, 0.0f, 1.0f,
         1.0f, 0.0f, 1.0f, 0.0f,
