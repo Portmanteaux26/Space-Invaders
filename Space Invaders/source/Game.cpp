@@ -1,16 +1,16 @@
 #include "Game.h"
 #include "GameObject.h"
+#include "InputManager.h"
 #include "ResourceManager.h"
 #include "SpriteRenderer.h"
 
 
 Game::Game(unsigned int width, unsigned int height)
     : State(GAME_ACTIVE)
-    , Keys()
     , Width(width)
     , Height(height)
 {
-    
+    Game::Init();
 }
 
 Game::~Game()
@@ -40,7 +40,7 @@ void Game::Update(float dt)
 
 }
 
-void Game::ProcessInput(float dt) const
+void Game::ProcessInput(float dt, InputManager& input_manager) const
 {
 
     if (this->State == GAME_ACTIVE)
@@ -48,7 +48,7 @@ void Game::ProcessInput(float dt) const
         float right_bound = this->Width - Player->Size.x;
         float velocity = PLAYER_VELOCITY * dt;
         // move playerboard
-        if (this->Keys[GLFW_KEY_A]) // move left
+        if (input_manager.keys[GLFW_KEY_A]) // move left
         {
             if (Player->Position.x <= 0.0f)
             {
@@ -59,7 +59,7 @@ void Game::ProcessInput(float dt) const
                 Player->Position.x -= velocity;
             }
         }
-        if (this->Keys[GLFW_KEY_D]) // move right
+        if (input_manager.keys[GLFW_KEY_D]) // move right
         {
             if (Player->Position.x >= right_bound)
             {

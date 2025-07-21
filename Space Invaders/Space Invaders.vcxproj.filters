@@ -8,6 +8,7 @@
     <ClInclude Include="headers\stb_image.h" />
     <ClInclude Include="headers\SpriteRenderer.h" />
     <ClInclude Include="headers\GameObject.h" />
+    <ClInclude Include="headers\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -19,6 +20,7 @@
     <ClCompile Include="source\stb_image.cpp" />
     <ClCompile Include="source\SpriteRenderer.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />

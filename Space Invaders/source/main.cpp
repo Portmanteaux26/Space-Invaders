@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Game.h"
+#include "InputManager.h"
 #include "ResourceManager.h"
 
 #include <iostream>
@@ -15,7 +16,7 @@ const unsigned int SCREEN_WIDTH = 800;
 // The height of the screen
 const unsigned int SCREEN_HEIGHT = 600;
 
-Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
+InputManager INPUT_MANAGER = InputManager::Get();
 
 
 int main(int argc, char* argv[])
@@ -51,7 +52,7 @@ int main(int argc, char* argv[])
 
     // initialize game
     // ---------------
-    Breakout.Init();
+    Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
 
     // deltaTime variables
     // -------------------
@@ -69,7 +70,7 @@ int main(int argc, char* argv[])
 
         // manage user input
         // -----------------
-        Breakout.ProcessInput(deltaTime);
+        Breakout.ProcessInput(deltaTime, INPUT_MANAGER);
 
         // update game state
         // -----------------
@@ -100,9 +101,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     if (key >= 0 && key < 1024)
     {
         if (action == GLFW_PRESS)
-            Breakout.Keys[key] = true;
+            INPUT_MANAGER.keys[key] = true;
         else if (action == GLFW_RELEASE)
-            Breakout.Keys[key] = false;
+            INPUT_MANAGER.keys[key] = false;
     }
 }
 

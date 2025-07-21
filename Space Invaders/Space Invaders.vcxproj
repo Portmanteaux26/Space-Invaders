@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="headers\Game.h" />
     <ClInclude Include="headers\GameObject.h" />
+    <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\ResourceManager.h" />
     <ClInclude Include="headers\Shader.h" />
     <ClInclude Include="headers\SpriteRenderer.h" />
@@ -31,6 +32,7 @@
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\glad.c" />
+    <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\ResourceManager.cpp" />
     <ClCompile Include="source\Shader.cpp" />

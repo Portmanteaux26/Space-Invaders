@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include "GameObject.h"
+#include "InputManager.h"
 #include "SpriteRenderer.h"
 
 
@@ -27,21 +28,20 @@ class Game
 public:
     // game state
     GameState           State;
-    bool                Keys[256];
     const unsigned int  Width, Height;
     SpriteRenderer*     Renderer;
     GameObject*         Player;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();
-    // initializes game state (load all shaders/textures/levels)
-    void Init();
     // game loop
-    void ProcessInput(float dt) const;
+    void ProcessInput(float dt, InputManager&) const;
     void Update(float dt);
     void Render() const;
 
 private:
+    // initializes game state (load all shaders/textures/levels)
+    void Init();
 };
 
 #endif
