@@ -30,14 +30,25 @@ void Game::Init()
     Renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
     // load textures
     ResourceManager::LoadTexture("resources/textures/paddle.png", true, "paddle");
+    ResourceManager::LoadTexture("resources/textures/awesomeface.png", true, "laser");
     // configure game objects
     glm::vec2 playerPos = glm::vec2(this->Width / 2.0f - PLAYER_SIZE.x / 2.0f, this->Height - PLAYER_SIZE.y);
+    glm::vec2 storage = glm::vec2(this->Width / 2.0f, this->Height / 2.0f);
     Player = new GameObject(playerPos, PLAYER_SIZE, ResourceManager::GetTexture("paddle"));
+    Laser = new GameObject(storage, LASER_SIZE, ResourceManager::GetTexture("laser"));
 }
 
 void Game::Update(float dt)
 {
-
+    if (Laser->Destroyed == false)
+    {
+        Laser->Position.y -= LASER_VELOCITY * dt;
+    }
+    if (Laser->Position.y <= 0.0f)
+    {
+        Laser->Destroyed = true;
+    }
+    
 }
 
 void Game::ProcessInput(float dt, InputManager& input_manager) const
@@ -70,6 +81,15 @@ void Game::ProcessInput(float dt, InputManager& input_manager) const
                 Player->Position.x += velocity;
             }
         }
+        if (input_manager.keys[GLFW_KEY_SPACE]) // shoot laser
+        {
+            if (Laser->Destroyed == true)
+            {
+                Laser->Destroyed = false;
+                Laser->Position.x = Player->Position.x + PLAYER_SIZE.x / 2.0f - LASER_SIZE.x / 2.0f;
+                Laser->Position.y = Player->Position.y - PLAYER_SIZE.y;
+            }
+        }
     }
 }
 
@@ -79,5 +99,10 @@ void Game::Render() const
     {
         // draw player
         Player->Draw(*Renderer);
+        //draw laser
+        if (Laser->Destroyed == false)
+        {
+            Laser->Draw(*Renderer);
+        }
     }
 }

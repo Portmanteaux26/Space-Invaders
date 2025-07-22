@@ -9,7 +9,7 @@ GameObject::GameObject(glm::vec2 pos, glm::vec2 size, const Texture2D& sprite, g
     , Rotation(0.0f)
     , Sprite(sprite)
     , IsSolid(false)
-    , Destroyed(false)
+    , Destroyed(true)
 { }
 
 void GameObject::Draw(SpriteRenderer& renderer)

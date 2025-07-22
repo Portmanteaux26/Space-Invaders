@@ -13,6 +13,7 @@ public:
     // object state
     glm::vec2 Position = glm::vec2(0.0f, 0.0f);
     glm::vec2 Size = glm::vec2(0.0f, 0.0f);
+    bool Destroyed;
     
     // constructor
     GameObject(
@@ -20,8 +21,7 @@ public:
         glm::vec2 size,
         const Texture2D& sprite,
         glm::vec3 color = glm::vec3(1.0f),
-        glm::vec2 velocity = glm::vec2(0.0f, 0.0f)
-    );
+        glm::vec2 velocity = glm::vec2(0.0f, 0.0f));
     // draws sprite
     virtual void Draw(SpriteRenderer& renderer);
 
@@ -30,8 +30,7 @@ private:
     glm::vec2 Velocity;
     glm::vec3 Color;
     float Rotation = 0.0f;
-    bool  IsSolid = false;
-    bool  Destroyed = false;
+    bool IsSolid = false;
     // render state
     const Texture2D& Sprite;
 };
