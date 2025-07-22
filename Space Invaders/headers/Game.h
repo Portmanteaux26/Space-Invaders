@@ -31,8 +31,8 @@ public:
     const unsigned int Width;
     const unsigned int Height;
     SpriteRenderer* Renderer;
-    GameObject* Player;
-    GameObject* Laser;
+    GameObject* Cannon1;
+    GameObject* Laser1;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();

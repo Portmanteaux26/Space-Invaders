@@ -7,8 +7,10 @@
     <ClInclude Include="headers\ResourceManager.h" />
     <ClInclude Include="headers\stb_image.h" />
     <ClInclude Include="headers\SpriteRenderer.h" />
-    <ClInclude Include="headers\GameObject.h" />
+    <ClInclude Include="headers\GameObjects\GameObject.h" />
     <ClInclude Include="headers\InputManager.h" />
+    <ClInclude Include="headers\GameObjects\Cannon.h" />
+    <ClInclude Include="headers\GameObjects\Laser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -19,8 +21,10 @@
     <ClCompile Include="source\ResourceManager.cpp" />
     <ClCompile Include="source\stb_image.cpp" />
     <ClCompile Include="source\SpriteRenderer.cpp" />
-    <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\GameObjects\GameObject.cpp" />
     <ClCompile Include="source\InputManager.cpp" />
+    <ClCompile Include="source\GameObjects\Cannon.cpp" />
+    <ClCompile Include="source\GameObjects\Laser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />

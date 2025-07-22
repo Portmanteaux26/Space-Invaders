@@ -1,6 +1,5 @@
 #pragma once
 
-#include <glad/glad.h>
 #include <glm/glm.hpp>
 
 #include "Texture.h"
@@ -11,8 +10,8 @@ class GameObject
 {
 public:
     // object state
-    glm::vec2 Position = glm::vec2(0.0f, 0.0f);
-    glm::vec2 Size = glm::vec2(0.0f, 0.0f);
+    glm::vec2 Position;
+    glm::vec2 Size;
     bool Destroyed;
     
     // constructor
@@ -25,12 +24,12 @@ public:
     // draws sprite
     virtual void Draw(SpriteRenderer& renderer);
 
-private:
+protected:
+    // render state
+    const Texture2D& Sprite;
     // object state
     glm::vec2 Velocity;
     glm::vec3 Color;
     float Rotation = 0.0f;
     bool IsSolid = false;
-    // render state
-    const Texture2D& Sprite;
 };

@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\GameObjects\Cannon.h" />
     <ClInclude Include="headers\Game.h" />
-    <ClInclude Include="headers\GameObject.h" />
+    <ClInclude Include="headers\GameObjects\GameObject.h" />
+    <ClInclude Include="headers\GameObjects\Laser.h" />
     <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\ResourceManager.h" />
     <ClInclude Include="headers\Shader.h" />
@@ -29,8 +31,10 @@
     <ClInclude Include="headers\Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GameObjects\Cannon.cpp" />
     <ClCompile Include="source\Game.cpp" />
-    <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\GameObjects\GameObject.cpp" />
+    <ClCompile Include="source\GameObjects\Laser.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -101,7 +105,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;C:\Users\micha\source\repos\Space Invaders\Space Invaders\resources;$(IncludePath)</IncludePath>
+    <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;C:\Users\micha\source\repos\Space Invaders\Space Invaders\resources;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\source\GameObjects;$(IncludePath)</IncludePath>
     <LibraryPath>C:\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
