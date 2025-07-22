@@ -1,5 +1,4 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#pragma once
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -36,5 +35,3 @@ private:
     // render state
     const Texture2D& Sprite;
 };
-
-#endif

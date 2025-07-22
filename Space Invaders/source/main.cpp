@@ -7,6 +7,7 @@
 
 #include <iostream>
 
+
 // GLFW function declarations
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
@@ -16,6 +17,7 @@ const unsigned int SCREEN_WIDTH = 800;
 // The height of the screen
 const unsigned int SCREEN_HEIGHT = 600;
 
+// global input manager to facilitate constructing Game 
 InputManager INPUT_MANAGER = InputManager::Get();
 
 
@@ -30,7 +32,7 @@ int main(int argc, char* argv[])
 #endif
     glfwWindowHint(GLFW_RESIZABLE, false);
 
-    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Space Invaders", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
     // glad: load all OpenGL function pointers
@@ -52,7 +54,7 @@ int main(int argc, char* argv[])
 
     // initialize game
     // ---------------
-    Game Breakout(SCREEN_WIDTH, SCREEN_HEIGHT);
+    Game SpaceInvaders(SCREEN_WIDTH, SCREEN_HEIGHT);
 
     // deltaTime variables
     // -------------------
@@ -70,17 +72,17 @@ int main(int argc, char* argv[])
 
         // manage user input
         // -----------------
-        Breakout.ProcessInput(deltaTime, INPUT_MANAGER);
+        SpaceInvaders.ProcessInput(deltaTime, INPUT_MANAGER);
 
         // update game state
         // -----------------
-        Breakout.Update(deltaTime);
+        SpaceInvaders.Update(deltaTime);
 
         // render
         // ------
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-        Breakout.Render();
+        SpaceInvaders.Render();
 
         glfwSwapBuffers(window);
     }

@@ -1,5 +1,4 @@
-#ifndef INPUTMANAGER_H
-#define INPUTMANAGER_H
+#pragma once
 
 
 class InputManager
@@ -12,6 +11,3 @@ private:
 	// constructor
 	InputManager() { }
 };
-
-
-#endif

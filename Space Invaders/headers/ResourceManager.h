@@ -1,5 +1,4 @@
-#ifndef RESOURCE_MANAGER_H
-#define RESOURCE_MANAGER_H
+#pragma once
 
 #include <map>
 #include <string>
@@ -37,5 +36,3 @@ private:
     // loads a single texture from file
     static Texture2D loadTextureFromFile(const char* file, const bool alpha);
 };
-
-#endif

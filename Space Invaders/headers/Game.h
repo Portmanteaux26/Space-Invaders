@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -28,14 +27,15 @@ class Game
 public:
     // game state
     GameState           State;
-    const unsigned int  Width, Height;
+    const unsigned int  Width;
+    const unsigned int  Height;
     SpriteRenderer*     Renderer;
     GameObject*         Player;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();
     // game loop
-    void ProcessInput(float dt, InputManager&) const;
+    void ProcessInput(float dt, InputManager& input_manager) const;
     void Update(float dt);
     void Render() const;
 
@@ -43,5 +43,3 @@ private:
     // initializes game state (load all shaders/textures/levels)
     void Init();
 };
-
-#endif
