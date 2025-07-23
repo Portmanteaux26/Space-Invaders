@@ -40,19 +40,12 @@ void Game::Init()
     glm::vec2 storage = glm::vec2(this->Width / 2.0f, this->Height / 2.0f);
     Cannon1 = new Cannon(playerPos, PLAYER_SIZE, ResourceManager::GetTexture("cannon"));
     Laser1 = new Laser(storage, LASER_SIZE, ResourceManager::GetTexture("laser"));
+    
 }
 
 void Game::Update(float dt)
 {
-    if (Laser1->Destroyed == false)
-    {
-        Laser1->Position.y -= LASER_VELOCITY * dt;
-    }
-    if (Laser1->Position.y <= 0.0f)
-    {
-        Laser1->Destroyed = true;
-    }
-    
+    Laser1->Update(dt);
 }
 
 void Game::ProcessInput(float dt, InputManager& input_manager) const

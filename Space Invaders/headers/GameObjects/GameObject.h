@@ -20,16 +20,18 @@ public:
         glm::vec2 size,
         const Texture2D& sprite,
         glm::vec3 color = glm::vec3(1.0f),
-        glm::vec2 velocity = glm::vec2(0.0f, 0.0f));
+        const float velocity = 500.0f);
+    // updates object
+    virtual void Update(float dt) = 0;
     // draws sprite
     virtual void Draw(SpriteRenderer& renderer);
 
 protected:
     // render state
     const Texture2D& Sprite;
-    // object state
-    glm::vec2 Velocity;
     glm::vec3 Color;
+    // object state
+    float Velocity;
     float Rotation = 0.0f;
     bool IsSolid = false;
 };

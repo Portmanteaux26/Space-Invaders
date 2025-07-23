@@ -1,6 +1,12 @@
 #include "Cannon.h"
 
 
-Cannon::Cannon(glm::vec2 pos, glm::vec2 size, const Texture2D& sprite, glm::vec3 color, glm::vec2 velocity)
+Cannon::Cannon(glm::vec2 pos, glm::vec2 size, const Texture2D& sprite, glm::vec3 color, float velocity)
 	: GameObject(pos, size, sprite, color, velocity)
-{ }
+{
+}
+
+void Cannon::Update(float dt)
+{
+
+}
