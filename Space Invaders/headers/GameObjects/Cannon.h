@@ -1,6 +1,10 @@
 #pragma once
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include "GameObject.h"
+#include "InputManager.h"
 
 
 class Cannon : public GameObject

@@ -45,7 +45,11 @@ void Game::Init()
 
 void Game::Update(float dt)
 {
-    Laser1->Update(dt);
+    if (this->State == GAME_ACTIVE)
+    {
+        Cannon1->Update(dt);
+        Laser1->Update(dt);
+    }
 }
 
 void Game::ProcessInput(float dt, InputManager& input_manager) const
@@ -53,38 +57,13 @@ void Game::ProcessInput(float dt, InputManager& input_manager) const
 
     if (this->State == GAME_ACTIVE)
     {
-        float right_bound = this->Width - Cannon1->Size.x;
-        float velocity = PLAYER_VELOCITY * dt;
-        // move playerboard
-        if (input_manager.keys[GLFW_KEY_A]) // move left
-        {
-            if (Cannon1->Position.x <= 0.0f)
-            {
-                Cannon1->Position.x = 0.0f;
-            }
-            else
-            {
-                Cannon1->Position.x -= velocity;
-            }
-        }
-        if (input_manager.keys[GLFW_KEY_D]) // move right
-        {
-            if (Cannon1->Position.x >= right_bound)
-            {
-                Cannon1->Position.x = right_bound;
-            }
-            else
-            {
-                Cannon1->Position.x += velocity;
-            }
-        }
         if (input_manager.keys[GLFW_KEY_SPACE]) // shoot laser
         {
             if (Laser1->Destroyed == true)
             {
                 Laser1->Destroyed = false;
-                Laser1->Position.x = Cannon1->Position.x + PLAYER_SIZE.x / 2.0f - LASER_SIZE.x / 2.0f;
-                Laser1->Position.y = Cannon1->Position.y - PLAYER_SIZE.y;
+                Laser1->Position.x = Cannon1->Position.x + Cannon1->Size.x / 2.0f - Laser1->Size.x / 2.0f;
+                Laser1->Position.y = Cannon1->Position.y - Cannon1->Size.y;
             }
         }
     }

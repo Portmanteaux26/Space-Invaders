@@ -17,9 +17,6 @@ const unsigned int SCREEN_WIDTH = 800;
 // The height of the screen
 const unsigned int SCREEN_HEIGHT = 600;
 
-// global input manager to facilitate constructing Game 
-InputManager INPUT_MANAGER = InputManager::Get();
-
 
 int main(int argc, char* argv[])
 {
@@ -72,7 +69,7 @@ int main(int argc, char* argv[])
 
         // manage user input
         // -----------------
-        SpaceInvaders.ProcessInput(deltaTime, INPUT_MANAGER);
+        SpaceInvaders.ProcessInput(deltaTime, InputManager::Get());
 
         // update game state
         // -----------------
@@ -103,9 +100,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     if (key >= 0 && key < 1024)
     {
         if (action == GLFW_PRESS)
-            INPUT_MANAGER.keys[key] = true;
+            InputManager::Get().keys[key] = true;
         else if (action == GLFW_RELEASE)
-            INPUT_MANAGER.keys[key] = false;
+            InputManager::Get().keys[key] = false;
     }
 }
 
