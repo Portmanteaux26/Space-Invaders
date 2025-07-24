@@ -4,8 +4,11 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include "Cannon.h"
 #include "GameObject.h"
 #include "InputManager.h"
+#include "Laser.h"
+#include "ResourceManager.h"
 #include "SpriteRenderer.h"
 
 
@@ -29,7 +32,7 @@ public:
     const unsigned int Width;
     const unsigned int Height;
     SpriteRenderer* Renderer;
-    GameObject* Cannon1;
+    Cannon* Cannon1;
     GameObject* Laser1;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
