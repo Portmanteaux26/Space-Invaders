@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\GameConstants.h" />
     <ClInclude Include="headers\GameObjects\Cannon.h" />
     <ClInclude Include="headers\Game.h" />
     <ClInclude Include="headers\GameObjects\GameObject.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="headers\Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GameConstants.cpp" />
     <ClCompile Include="source\GameObjects\Cannon.cpp" />
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\GameObjects\GameObject.cpp" />

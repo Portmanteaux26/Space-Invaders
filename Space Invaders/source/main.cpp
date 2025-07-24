@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Game.h"
+#include "GameConstants.h"
 #include "InputManager.h"
 #include "ResourceManager.h"
 
@@ -11,11 +12,6 @@
 // GLFW function declarations
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
-
-// The width of the screen
-const unsigned int SCREEN_WIDTH = 800;
-// The height of the screen
-const unsigned int SCREEN_HEIGHT = 600;
 
 
 int main(int argc, char* argv[])
@@ -28,8 +24,9 @@ int main(int argc, char* argv[])
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
     glfwWindowHint(GLFW_RESIZABLE, false);
-
-    GLFWwindow* window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Space Invaders", nullptr, nullptr);
+#pragma warning( push )
+#pragma warning( disable : 4244 )
+    GLFWwindow* window = glfwCreateWindow(GameConstants::PlayableX, GameConstants::PlayableY, "Space Invaders", nullptr, nullptr);
     glfwMakeContextCurrent(window);
 
     // glad: load all OpenGL function pointers
@@ -45,14 +42,14 @@ int main(int argc, char* argv[])
 
     // OpenGL configuration
     // --------------------
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    glViewport(0, 0, GameConstants::PlayableX, GameConstants::PlayableY);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // initialize game
     // ---------------
-    Game SpaceInvaders(SCREEN_WIDTH, SCREEN_HEIGHT);
-
+    Game SpaceInvaders(GameConstants::PlayableX, GameConstants::PlayableY);
+#pragma warning( pop )
     // deltaTime variables
     // -------------------
     float deltaTime = 0.0f;
@@ -69,7 +66,7 @@ int main(int argc, char* argv[])
 
         // manage user input
         // -----------------
-        SpaceInvaders.ProcessInput(deltaTime, InputManager::Get());
+        SpaceInvaders.ProcessInput(deltaTime);
 
         // update game state
         // -----------------

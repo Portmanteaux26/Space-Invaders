@@ -35,7 +35,7 @@ public:
     Game(unsigned int width, unsigned int height);
     ~Game();
     // game loop
-    void ProcessInput(float dt, InputManager& input_manager) const;
+    void ProcessInput(float dt) const;
     void Update(float dt);
     void Render() const;
 

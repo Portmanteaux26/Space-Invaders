@@ -11,6 +11,7 @@
     <ClInclude Include="headers\InputManager.h" />
     <ClInclude Include="headers\GameObjects\Cannon.h" />
     <ClInclude Include="headers\GameObjects\Laser.h" />
+    <ClInclude Include="headers\GameConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -25,6 +26,7 @@
     <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\GameObjects\Cannon.cpp" />
     <ClCompile Include="source\GameObjects\Laser.cpp" />
+    <ClCompile Include="source\GameConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />

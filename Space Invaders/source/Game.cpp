@@ -52,12 +52,12 @@ void Game::Update(float dt)
     }
 }
 
-void Game::ProcessInput(float dt, InputManager& input_manager) const
+void Game::ProcessInput(float dt) const
 {
 
     if (this->State == GAME_ACTIVE)
     {
-        if (input_manager.keys[GLFW_KEY_SPACE]) // shoot laser
+        if (InputManager::Get().keys[GLFW_KEY_SPACE]) // shoot laser
         {
             if (Laser1->Destroyed == true)
             {

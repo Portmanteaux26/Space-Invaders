@@ -7,7 +7,7 @@ Cannon::Cannon(glm::vec2 pos, glm::vec2 size, const Texture2D& sprite, glm::vec3
 
 void Cannon::Update(float dt)
 {
-    float right_bound = 600.0f - this->Size.x;
+    float right_bound = GameConstants::PlayableX - this->Size.x;
     float distance = this->Velocity * dt;
     // move left
     if (InputManager::Get().keys[GLFW_KEY_A])
