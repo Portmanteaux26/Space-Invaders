@@ -1,8 +1,8 @@
 #include "Cannon.h"
 
 
-Cannon::Cannon(const Texture2D& sprite)
-	: GameObject(sprite)
+Cannon::Cannon(const Texture2D& _sprite)
+	: GameObject(_sprite)
 {
     Size = glm::vec2(100.0f, 20.0f);
     Position = glm::vec2(GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f, GameConstants::PlayableY - this->Size.y);

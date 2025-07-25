@@ -7,6 +7,7 @@
 #include "Cannon.h"
 #include "GameObject.h"
 #include "InputManager.h"
+#include "Invader.h"
 #include "Laser.h"
 #include "ResourceManager.h"
 #include "SpriteRenderer.h"
@@ -22,13 +23,15 @@ public:
         GAME_WIN
     };
     // game state members
-    const unsigned int Width;
-    const unsigned int Height;
+    const float Width;
+    const float Height;
     Game::GameState State;
     SpriteRenderer* Renderer;
     Cannon* Cannon1;
+    Invader* Invader1;
+    
     // constructor/destructor
-    Game(unsigned int width, unsigned int height);
+    Game(float width, float height);
     ~Game();
     // game loop
     void ProcessInput(float dt) const;

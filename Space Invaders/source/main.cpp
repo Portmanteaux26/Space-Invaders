@@ -28,6 +28,7 @@ int main(int argc, char* argv[])
 #pragma warning( disable : 4244 )
     GLFWwindow* window = glfwCreateWindow(GameConstants::PlayableX, GameConstants::PlayableY, "Space Invaders", nullptr, nullptr);
     glfwMakeContextCurrent(window);
+    glfwSetWindowPos(window, 10, 50);
 
     // glad: load all OpenGL function pointers
     // ---------------------------------------
