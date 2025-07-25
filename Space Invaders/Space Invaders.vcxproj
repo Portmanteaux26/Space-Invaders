@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\awesomeface.png" />
+    <Image Include="resources\textures\crab_down.png" />
+    <Image Include="resources\textures\crab_up.png" />
     <Image Include="resources\textures\paddle.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

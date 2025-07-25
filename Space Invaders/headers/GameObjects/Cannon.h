@@ -13,15 +13,13 @@
 class Cannon : public GameObject
 {
 public:
+    // owns its laser
     Laser* myLaser;
-	Cannon(
-        glm::vec2 pos,
-        glm::vec2 size,
-        const Texture2D& sprite,
-        glm::vec3 color = glm::vec3(1.0f),
-        float velocity = 500.0f);
+    
+    Cannon(const Texture2D& sprite);
     ~Cannon();
     virtual void Update(float dt) override;
+
 private:
     void ProcessInput(float dt);
 };

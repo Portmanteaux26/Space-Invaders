@@ -1,15 +1,15 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(glm::vec2 pos, glm::vec2 size, const Texture2D& sprite, glm::vec3 color, float velocity)
-    : Position(pos)
-    , Size(size)
-    , Velocity(velocity)
-    , Color(color)
-    , Rotation(0.0f)
+GameObject::GameObject(const Texture2D& sprite)
+    : Size(glm::vec2(0.0f))
+    , Position(glm::vec2(0.0f))
     , Sprite(sprite)
-    , IsSolid(false)
-    , Destroyed(true)
+    , Color(glm::vec3(1.0f))
+    , Velocity(0.0f)
+    , Rotation(0.0f)
+    , IsSolid(true)
+    , Destroyed(false)
 { }
 
 void GameObject::Draw(SpriteRenderer& renderer)

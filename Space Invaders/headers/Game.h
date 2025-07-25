@@ -12,28 +12,21 @@
 #include "SpriteRenderer.h"
 
 
-// Represents the current state of the game
-const enum GameState
-{
-    GAME_ACTIVE,
-    GAME_MENU,
-    GAME_WIN
-};
-// GameObject default sizes
-const glm::vec2 PLAYER_SIZE(100.0f, 20.0f);
-const glm::vec2 LASER_SIZE(20.0f, 20.0f);
-
-
 class Game
 {
 public:
-    // game state
-    GameState State;
+    enum class GameState
+    {
+        GAME_ACTIVE,
+        GAME_MENU,
+        GAME_WIN
+    };
+    // game state members
     const unsigned int Width;
     const unsigned int Height;
+    Game::GameState State;
     SpriteRenderer* Renderer;
     Cannon* Cannon1;
-    GameObject* Laser1;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();

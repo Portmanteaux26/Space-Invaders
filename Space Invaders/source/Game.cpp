@@ -2,7 +2,7 @@
 
 
 Game::Game(unsigned int width, unsigned int height)
-    : State(GAME_ACTIVE)
+    : State(Game::GameState::GAME_ACTIVE)
     , Width(width)
     , Height(height)
 {
@@ -13,7 +13,6 @@ Game::~Game()
 {
     delete Renderer;
     delete Cannon1;
-    delete Laser1;
 }
 
 void Game::Init()
@@ -30,15 +29,12 @@ void Game::Init()
     ResourceManager::LoadTexture("resources/textures/paddle.png", true, "cannon");
     ResourceManager::LoadTexture("resources/textures/awesomeface.png", true, "laser");
     // configure game objects
-    glm::vec2 playerPos = glm::vec2(this->Width / 2.0f - PLAYER_SIZE.x / 2.0f, this->Height - PLAYER_SIZE.y);
-    glm::vec2 storage = glm::vec2(this->Width / 2.0f, this->Height / 2.0f);
-    Cannon1 = new Cannon(playerPos, PLAYER_SIZE, ResourceManager::GetTexture("cannon"));
-    
+    Cannon1 = new Cannon(ResourceManager::GetTexture("cannon"));
 }
 
 void Game::Update(float dt)
 {
-    if (this->State == GAME_ACTIVE)
+    if (this->State == Game::GameState::GAME_ACTIVE)
     {
         Cannon1->Update(dt);
     }
@@ -47,20 +43,20 @@ void Game::Update(float dt)
 void Game::ProcessInput(float dt) const
 {
 
-    if (this->State == GAME_ACTIVE)
+    if (this->State == Game::GameState::GAME_ACTIVE)
     {
-        
+        // for pausing, etc
     }
 }
 
 void Game::Render() const
 {
-    if (this->State == GAME_ACTIVE)
+    if (this->State == Game::GameState::GAME_ACTIVE)
     {
         // draw player
         Cannon1->Draw(*Renderer);
         // draw laser
-        if (Cannon1->myLaser->Destroyed == false)
+        if (! Cannon1->myLaser->Destroyed)
         {
             Cannon1->myLaser->Draw(*Renderer);
         }

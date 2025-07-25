@@ -1,10 +1,13 @@
 #include "Cannon.h"
 
 
-Cannon::Cannon(glm::vec2 pos, glm::vec2 size, const Texture2D& sprite, glm::vec3 color, float velocity)
-	: GameObject(pos, size, sprite, color, velocity)
+Cannon::Cannon(const Texture2D& sprite)
+	: GameObject(sprite)
 {
-    myLaser = new Laser(pos, glm::vec2(20.0f, 20.0f), ResourceManager::GetTexture("laser"));
+    Size = glm::vec2(100.0f, 20.0f);
+    Position = glm::vec2(GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f, GameConstants::PlayableY - this->Size.y);
+    Velocity = 500.0f;
+    myLaser = new Laser(ResourceManager::GetTexture("laser"));
 }
 
 Cannon::~Cannon()
@@ -43,7 +46,7 @@ void Cannon::ProcessInput(float dt)
     // shoot laser
     if (InputManager::Get().keys[GLFW_KEY_SPACE])
     {
-        if (myLaser->Destroyed == true)
+        if (myLaser->Destroyed)
         {
             myLaser->Destroyed = false;
             myLaser->Position.x = this->Position.x + this->Size.x / 2.0f - myLaser->Size.x / 2.0f;

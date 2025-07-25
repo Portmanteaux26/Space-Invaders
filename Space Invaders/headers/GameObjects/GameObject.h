@@ -10,17 +10,12 @@ class GameObject
 {
 public:
     // object state
-    glm::vec2 Position;
     glm::vec2 Size;
+    glm::vec2 Position;
     bool Destroyed;
     
     // constructor
-    GameObject(
-        glm::vec2 pos,
-        glm::vec2 size,
-        const Texture2D& sprite,
-        glm::vec3 color = glm::vec3(1.0f),
-        const float velocity = 500.0f);
+    GameObject(const Texture2D& sprite);
     // updates object
     virtual void Update(float dt) = 0;
     // draws sprite
@@ -32,6 +27,6 @@ protected:
     glm::vec3 Color;
     // object state
     float Velocity;
-    float Rotation = 0.0f;
-    bool IsSolid = false;
+    float Rotation;
+    bool IsSolid;
 };
