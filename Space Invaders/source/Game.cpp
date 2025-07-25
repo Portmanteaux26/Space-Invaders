@@ -1,10 +1,10 @@
 #include "Game.h"
 
 
-Game::Game(float width, float height)
+Game::Game()
     : State(Game::GameState::GAME_ACTIVE)
-    , Width(width)
-    , Height(height)
+    , Width(GameConstants::PlayableX)
+    , Height(GameConstants::PlayableY)
 {
     Game::Init();
 }
@@ -27,12 +27,13 @@ void Game::Init()
     // set render-specific controls
     Renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
     // load textures
-    ResourceManager::LoadTexture("resources/textures/paddle.png", true, "cannon");
-    ResourceManager::LoadTexture("resources/textures/awesomeface.png", true, "laser");
-    ResourceManager::LoadTexture("resources/textures/crab_down.png", true, "crab_up");
+    ResourceManager::LoadTexture("resources/textures/cannon.png", true, "cannon");
+    ResourceManager::LoadTexture("resources/textures/laser.png", true, "laser");
+    ResourceManager::LoadTexture("resources/textures/crab_down.png", true, "crab_down");
+    ResourceManager::LoadTexture("resources/textures/crab_up.png", true, "crab_up");
     // configure game objects
     Cannon1 = new Cannon(ResourceManager::GetTexture("cannon"));
-    Invader1 = new Invader(ResourceManager::GetTexture("crab_up"));
+    Invader1 = new Invader(ResourceManager::GetTexture("crab_down"));
 }
 
 void Game::Update(float dt)

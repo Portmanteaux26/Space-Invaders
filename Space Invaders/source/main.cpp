@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
     glfwWindowHint(GLFW_RESIZABLE, false);
+
 #pragma warning( push )
 #pragma warning( disable : 4244 )
     GLFWwindow* window = glfwCreateWindow(GameConstants::PlayableX, GameConstants::PlayableY, "Space Invaders", nullptr, nullptr);
@@ -46,11 +47,12 @@ int main(int argc, char* argv[])
     glViewport(0, 0, GameConstants::PlayableX, GameConstants::PlayableY);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+#pragma warning( pop )
+    
     // initialize game
     // ---------------
-    Game SpaceInvaders(GameConstants::PlayableX, GameConstants::PlayableY);
-#pragma warning( pop )
+    Game SpaceInvaders;
+
     // deltaTime variables
     // -------------------
     float deltaTime = 0.0f;

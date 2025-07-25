@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 
 #include "Cannon.h"
+#include "GameConstants.h"
 #include "GameObject.h"
 #include "InputManager.h"
 #include "Invader.h"
@@ -31,7 +32,7 @@ public:
     Invader* Invader1;
     
     // constructor/destructor
-    Game(float width, float height);
+    Game();
     ~Game();
     // game loop
     void ProcessInput(float dt) const;

@@ -4,8 +4,10 @@
 Cannon::Cannon(const Texture2D& _sprite)
 	: GameObject(_sprite)
 {
-    Size = glm::vec2(100.0f, 20.0f);
-    Position = glm::vec2(GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f, GameConstants::PlayableY - this->Size.y);
+    Size = glm::vec2(Sprite.Width, Sprite.Height);
+    float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
+    float y = GameConstants::PlayableY - this->Size.y - 128.0f;
+    Position = glm::vec2(x, y);
     Velocity = 500.0f;
     myLaser = new Laser(ResourceManager::GetTexture("laser"));
 }
@@ -50,7 +52,7 @@ void Cannon::ProcessInput(float dt)
         {
             myLaser->Destroyed = false;
             myLaser->Position.x = this->Position.x + this->Size.x / 2.0f - myLaser->Size.x / 2.0f;
-            myLaser->Position.y = this->Position.y - this->Size.y;
+            myLaser->Position.y = this->Position.y - myLaser->Size.y;
         }
     }
 }
