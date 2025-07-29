@@ -27,10 +27,7 @@ public:
     static void Clear();
 private:
     // private constructor
-    ResourceManager()
-    {
-
-    }
+    ResourceManager() { }
     // loads and generates a shader from file
     static Shader loadShaderFromFile(const char* vShaderFile, const char* fShaderFile, const char* gShaderFile = nullptr);
     // loads a single texture from file

@@ -8,6 +8,6 @@ public:
 	static InputManager& Get();
 
 private:
-	// constructor
+	// private constructor
 	InputManager() { }
 };

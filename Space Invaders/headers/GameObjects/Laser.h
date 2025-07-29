@@ -6,6 +6,6 @@
 class Laser : public GameObject
 {
 public:
-    Laser(const Texture2D& sprite);
+    Laser(Texture2D& _sprite);
     virtual void Update(float dt) override;
 };

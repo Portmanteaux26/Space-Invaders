@@ -16,7 +16,7 @@ public:
     // owns its laser
     Laser* myLaser;
     
-    Cannon(const Texture2D& sprite);
+    Cannon(Texture2D& _sprite);
     ~Cannon();
     virtual void Update(float dt) override;
 

@@ -15,7 +15,7 @@ public:
     bool Destroyed;
     
     // constructor
-    GameObject(const Texture2D& sprite);
+    GameObject(Texture2D& _sprite);
     // updates object
     virtual void Update(float dt) = 0;
     // draws sprite
@@ -23,7 +23,7 @@ public:
 
 protected:
     // render state
-    const Texture2D& Sprite;
+    Texture2D& Sprite;
     glm::vec3 Color;
     // object state
     float Velocity;

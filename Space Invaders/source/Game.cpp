@@ -36,21 +36,37 @@ void Game::Init()
     Invader1 = new Invader(ResourceManager::GetTexture("crab_down"));
 }
 
-void Game::Update(float dt)
-{
-    if (this->State == Game::GameState::GAME_ACTIVE)
-    {
-        Cannon1->Update(dt);
-        Invader1->Update(dt);
-    }
-}
-
 void Game::ProcessInput(float dt) const
 {
 
     if (this->State == Game::GameState::GAME_ACTIVE)
     {
         // for pausing, etc
+    }
+}
+
+void Game::TestCollision()
+{
+    if (Cannon1->myLaser->Position.y >= Invader1->Position.y &&
+        Cannon1->myLaser->Position.y <= Invader1->Position.y + Invader1->Size.y)
+    {
+        if (Cannon1->myLaser->Position.x >= Invader1->Position.x &&
+            Cannon1->myLaser->Position.x <= Invader1->Position.x + Invader1->Size.x)
+        {
+            Cannon1->myLaser->Destroyed = true;
+            Invader1->Destroyed = true;
+        }
+        
+    }
+}
+
+void Game::Update(float dt)
+{
+    if (this->State == Game::GameState::GAME_ACTIVE)
+    {
+        Cannon1->Update(dt);
+        Invader1->Update(dt);
+        Game::TestCollision();
     }
 }
 

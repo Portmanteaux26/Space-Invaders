@@ -1,8 +1,8 @@
 #include "Laser.h"
 
 
-Laser::Laser(const Texture2D& sprite)
-	: GameObject(sprite)
+Laser::Laser(Texture2D& _sprite)
+	: GameObject(_sprite)
 {
     Size = glm::vec2(20.0f, 20.0f);
     Velocity = 500.0f;

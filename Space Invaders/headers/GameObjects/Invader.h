@@ -7,6 +7,6 @@
 class Invader : public GameObject
 {
 public:
-	Invader(const Texture2D& sprite);
+	Invader(Texture2D& _sprite);
 	virtual void Update(float dt) override;
 };

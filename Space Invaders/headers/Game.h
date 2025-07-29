@@ -36,6 +36,7 @@ public:
     ~Game();
     // game loop
     void ProcessInput(float dt) const;
+    void TestCollision();
     void Update(float dt);
     void Render() const;
 
