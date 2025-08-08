@@ -5,17 +5,24 @@ Laser::Laser(Texture2D& _sprite)
 	: GameObject(_sprite)
 {
     Size = glm::vec2(20.0f, 20.0f);
+    CollisionID = ColMaskLaser;
+    CanCollideWith = ColMaskInvader;
     Velocity = 500.0f;
 }
 
 void Laser::Update(float dt)
 {
-    if (! this->Destroyed)
+    if (Collided)
     {
-        this->Position.y -= this->Velocity * dt;
+        Destroyed = true;
+        Collided = false;
     }
-    if (this->Position.y <= 0.0f)
+    if (!Destroyed)
     {
-        this->Destroyed = true;
+        Position.y -= Velocity * dt;
+    }
+    if (Position.y <= 0.0f)
+    {
+        Destroyed = true;
     }
 }

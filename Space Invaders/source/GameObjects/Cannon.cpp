@@ -8,15 +8,15 @@ Cannon::Cannon(Texture2D& _sprite)
     float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
     float y = GameConstants::PlayableY - this->Size.y - 128.0f;
     Position = glm::vec2(x, y);
+    CollisionID = ColMaskCannon;
+    CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile);
     Color = glm::vec3(0.0f, 255.0f, 0.0f);
     Velocity = 500.0f;
-    myLaser = new Laser(ResourceManager::GetTexture("laser"));
+    pLaser = nullptr;
 }
 
 Cannon::~Cannon()
-{
-    delete myLaser;
-}
+{ }
 
 void Cannon::ProcessInput(float dt)
 {
@@ -25,43 +25,48 @@ void Cannon::ProcessInput(float dt)
     // move left
     if (InputManager::Get().keys[GLFW_KEY_A])
     {
-        if (this->Position.x <= 0.0f)
+        if (Position.x <= 0.0f)
         {
-            this->Position.x = 0.0f;
+            Position.x = 0.0f;
         }
         else
         {
-            this->Position.x -= distance;
+            Position.x -= distance;
         }
     }
     // move right
     if (InputManager::Get().keys[GLFW_KEY_D])
     {
-        if (this->Position.x >= right_bound)
+        if (Position.x >= right_bound)
         {
-            this->Position.x = right_bound;
+            Position.x = right_bound;
         }
         else
         {
-            this->Position.x += distance;
+            Position.x += distance;
         }
     }
     // shoot laser
     if (InputManager::Get().keys[GLFW_KEY_SPACE])
     {
-        if (myLaser->Destroyed)
+        if (pLaser->Destroyed)
         {
-            myLaser->Destroyed = false;
-            myLaser->Position.x = this->Position.x + this->Size.x / 2.0f - myLaser->Size.x / 2.0f;
-            myLaser->Position.y = this->Position.y - myLaser->Size.y;
+            pLaser->Destroyed = false;
+            pLaser->Position.x = this->Position.x + this->Size.x / 2.0f - pLaser->Size.x / 2.0f;
+            pLaser->Position.y = this->Position.y - pLaser->Size.y;
         }
     }
 }
 
 void Cannon::Update(float dt)
 {
-    // update laser first
-    myLaser->Update(dt);
-    // then process input
-    this->ProcessInput(dt);
+    if (Collided)
+    {
+        Destroyed = true;
+        Collided = false;
+    }
+    if (!Destroyed)
+    {
+        ProcessInput(dt);
+    }
 }

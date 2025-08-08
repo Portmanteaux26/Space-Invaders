@@ -6,19 +6,29 @@
 #include "SpriteRenderer.h"
 
 
+
 class GameObject
 {
 public:
+    enum CollisionMask
+    {
+        ColMaskNone = 0,
+        ColMaskCannon = 1 << 0,
+        ColMaskLaser = 1 << 1,
+        ColMaskInvader = 1 << 2,
+        ColMaskMissile = 1 << 3,
+        ColMaskBunker = 1 << 4
+    };
+    CollisionMask CollisionID;
+    CollisionMask CanCollideWith;
     // object state
     glm::vec2 Size;
     glm::vec2 Position;
+    bool Collided;
     bool Destroyed;
     
-    // constructor
     GameObject(Texture2D& _sprite);
-    // updates object
     virtual void Update(float dt) = 0;
-    // draws sprite
     virtual void Draw(SpriteRenderer& renderer);
 
 protected:

@@ -12,8 +12,10 @@ Game::Game()
 Game::~Game()
 {
     delete Renderer;
-    delete Cannon1;
-    delete Invader1;
+    for (GameObject* Object : GameObjects)
+    {
+        delete Object;
+    }
 }
 
 void Game::Init()
@@ -22,18 +24,24 @@ void Game::Init()
     ResourceManager::LoadShader("resources/shaders/sprite.vs", "resources/shaders/sprite.fs", nullptr, "sprite");
     // configure shaders
     glm::mat4 projection = glm::ortho(0.0f, this->Width, this->Height, 0.0f, -1.0f, 1.0f);
-    ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
-    ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+    Shader SpriteShader = ResourceManager::GetShader("sprite");
+    SpriteShader.Use();
+    SpriteShader.SetInteger("image", 0);
+    SpriteShader.SetMatrix4("projection", projection);
     // set render-specific controls
-    Renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
+    Renderer = new SpriteRenderer(SpriteShader);
     // load textures
     ResourceManager::LoadTexture("resources/textures/cannon.png", true, "cannon");
     ResourceManager::LoadTexture("resources/textures/laser.png", true, "laser");
     ResourceManager::LoadTexture("resources/textures/crab_down.png", true, "crab_down");
     ResourceManager::LoadTexture("resources/textures/crab_up.png", true, "crab_up");
     // configure game objects
-    Cannon1 = new Cannon(ResourceManager::GetTexture("cannon"));
-    Invader1 = new Invader(ResourceManager::GetTexture("crab_down"));
+    Player = new Cannon(ResourceManager::GetTexture("cannon"));
+    PLayerLaser = new Laser(ResourceManager::GetTexture("laser"));
+    Player->pLaser = PLayerLaser;
+    GameObjects.push_back(Player);
+    GameObjects.push_back(PLayerLaser);
+    GameObjects.push_back(new Invader(ResourceManager::GetTexture("crab_down")));
 }
 
 void Game::ProcessInput(float dt) const
@@ -45,28 +53,43 @@ void Game::ProcessInput(float dt) const
     }
 }
 
-void Game::TestCollision()
+void Game::CheckCollision(GameObject* object1) const
 {
-    if (Cannon1->myLaser->Position.y >= Invader1->Position.y &&
-        Cannon1->myLaser->Position.y <= Invader1->Position.y + Invader1->Size.y)
+    if (object1->Destroyed == false)
     {
-        if (Cannon1->myLaser->Position.x >= Invader1->Position.x &&
-            Cannon1->myLaser->Position.x <= Invader1->Position.x + Invader1->Size.x)
+        for (GameObject* object2 : GameObjects)
         {
-            Cannon1->myLaser->Destroyed = true;
-            Invader1->Destroyed = true;
+            if (object2->Destroyed == false)
+            {
+                if ((object1->CanCollideWith & object2->CollisionID) != 0)
+                {
+                    if (object1->Position.y < object2->Position.y + object2->Size.y &&
+                        object1->Position.y + object1->Size.y > object2->Position.y)
+                    {
+                        if (object1->Position.x < object2->Position.x + object2->Size.x &&
+                            object1->Position.x + object1->Size.x > object2->Position.x)
+                        {
+                            object1->Collided = true;
+                        }
+                    }
+                }
+            }
         }
-        
     }
 }
 
-void Game::Update(float dt)
+void Game::Update(float dt) const
 {
     if (this->State == Game::GameState::GAME_ACTIVE)
     {
-        Cannon1->Update(dt);
-        Invader1->Update(dt);
-        Game::TestCollision();
+        for (GameObject* object : GameObjects)
+        {
+            object->Update(dt);
+        }
+        for (GameObject* object : GameObjects)
+        {
+            CheckCollision(object);
+        }
     }
 }
 
@@ -74,14 +97,12 @@ void Game::Render() const
 {
     if (this->State == Game::GameState::GAME_ACTIVE)
     {
-        // draw player
-        Cannon1->Draw(*Renderer);
-        // draw laser
-        if (! Cannon1->myLaser->Destroyed)
+        for (GameObject* object : GameObjects)
         {
-            Cannon1->myLaser->Draw(*Renderer);
+            if (!object->Destroyed)
+            {
+                object->Draw(*Renderer);
+            }
         }
-        // draw invader
-        Invader1->Draw(*Renderer);
     }
 }

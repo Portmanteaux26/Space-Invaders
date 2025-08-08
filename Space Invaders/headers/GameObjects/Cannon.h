@@ -13,8 +13,8 @@
 class Cannon : public GameObject
 {
 public:
-    // owns its laser
-    Laser* myLaser;
+    // holds a pointer to its laser
+    Laser* pLaser;
     
     Cannon(Texture2D& _sprite);
     ~Cannon();

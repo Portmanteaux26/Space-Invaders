@@ -4,6 +4,8 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 
+#include <vector>
+
 #include "Cannon.h"
 #include "GameConstants.h"
 #include "GameObject.h"
@@ -28,16 +30,17 @@ public:
     const float Height;
     Game::GameState State;
     SpriteRenderer* Renderer;
-    Cannon* Cannon1;
-    Invader* Invader1;
+    std::vector<GameObject*> GameObjects;
+    Cannon* Player;
+    Laser* PLayerLaser;
     
     // constructor/destructor
     Game();
     ~Game();
     // game loop
     void ProcessInput(float dt) const;
-    void TestCollision();
-    void Update(float dt);
+    void CheckCollision(GameObject*) const;
+    void Update(float dt) const;
     void Render() const;
 
 private:
