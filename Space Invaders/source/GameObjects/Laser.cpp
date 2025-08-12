@@ -12,11 +12,8 @@ Laser::Laser(Texture2D& _sprite)
 
 void Laser::Update(float dt)
 {
-    if (Collided)
-    {
-        Destroyed = true;
-        Collided = false;
-    }
+    GameObject::Update(dt);
+
     if (!Destroyed)
     {
         Position.y -= Velocity * dt;
@@ -24,5 +21,15 @@ void Laser::Update(float dt)
     if (Position.y <= 0.0f)
     {
         Destroyed = true;
+    }
+}
+
+void Laser::Shoot(const GameObject* shooter)
+{
+    if (Destroyed)
+    {
+        Destroyed = false;
+        this->Position.x = shooter->Position.x + shooter->Size.x / 2.0f - this->Size.x / 2.0f;
+        this->Position.y = shooter->Position.y - this->Size.y;
     }
 }

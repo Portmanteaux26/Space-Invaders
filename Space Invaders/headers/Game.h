@@ -39,6 +39,7 @@ public:
     ~Game();
     // game loop
     void ProcessInput(float dt) const;
+    bool CheckOverlap(GameObject* object1, GameObject* object2) const;
     void CheckCollision(GameObject*) const;
     void Update(float dt) const;
     void Render() const;

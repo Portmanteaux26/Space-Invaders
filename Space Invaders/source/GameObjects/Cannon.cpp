@@ -49,22 +49,14 @@ void Cannon::ProcessInput(float dt)
     // shoot laser
     if (InputManager::Get().keys[GLFW_KEY_SPACE])
     {
-        if (pLaser->Destroyed)
-        {
-            pLaser->Destroyed = false;
-            pLaser->Position.x = this->Position.x + this->Size.x / 2.0f - pLaser->Size.x / 2.0f;
-            pLaser->Position.y = this->Position.y - pLaser->Size.y;
-        }
+        pLaser->Shoot(this);
     }
 }
 
 void Cannon::Update(float dt)
 {
-    if (Collided)
-    {
-        Destroyed = true;
-        Collided = false;
-    }
+    GameObject::Update(dt);
+
     if (!Destroyed)
     {
         ProcessInput(dt);

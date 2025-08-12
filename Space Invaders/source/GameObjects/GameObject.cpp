@@ -15,6 +15,15 @@ GameObject::GameObject(Texture2D& _sprite)
     , IsSolid(true)
 { }
 
+void GameObject::Update(float dt)
+{
+    if (Collided)
+    {
+        Destroyed = true;
+        Collided = false;
+    }
+}
+
 void GameObject::Draw(SpriteRenderer& renderer)
 {
     renderer.DrawSprite(this->Sprite, this->Position, this->Size, this->Rotation, this->Color);

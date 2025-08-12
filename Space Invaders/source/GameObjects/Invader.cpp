@@ -12,9 +12,5 @@ Invader::Invader(Texture2D& _sprite)
 
 void Invader::Update(float dt)
 {
-	if (Collided)
-	{
-		Destroyed = true;
-		Collided = false;
-	}
+	GameObject::Update(dt);
 }

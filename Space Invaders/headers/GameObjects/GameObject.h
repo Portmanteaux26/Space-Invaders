@@ -28,7 +28,7 @@ public:
     bool Destroyed;
     
     GameObject(Texture2D& _sprite);
-    virtual void Update(float dt) = 0;
+    virtual void Update(float dt);
     virtual void Draw(SpriteRenderer& renderer);
 
 protected:
