@@ -4,15 +4,16 @@
     <ClInclude Include="headers\Game.h" />
     <ClInclude Include="headers\Rendering\Shader.h" />
     <ClInclude Include="headers\Rendering\Texture.h" />
-    <ClInclude Include="headers\ResourceManager.h" />
+    <ClInclude Include="headers\Managers\ResourceManager.h" />
     <ClInclude Include="headers\Rendering\stb_image.h" />
     <ClInclude Include="headers\Rendering\SpriteRenderer.h" />
     <ClInclude Include="headers\GameObjects\GameObject.h" />
-    <ClInclude Include="headers\InputManager.h" />
+    <ClInclude Include="headers\Managers\InputManager.h" />
     <ClInclude Include="headers\GameObjects\Cannon.h" />
     <ClInclude Include="headers\GameObjects\Laser.h" />
     <ClInclude Include="headers\GameConstants.h" />
     <ClInclude Include="headers\GameObjects\Invader.h" />
+    <ClInclude Include="headers\Managers\ObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -20,15 +21,16 @@
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Rendering\Shader.cpp" />
     <ClCompile Include="source\Rendering\Texture.cpp" />
-    <ClCompile Include="source\ResourceManager.cpp" />
+    <ClCompile Include="source\Managers\ResourceManager.cpp" />
     <ClCompile Include="source\Rendering\stb_image.cpp" />
     <ClCompile Include="source\Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="source\GameObjects\GameObject.cpp" />
-    <ClCompile Include="source\InputManager.cpp" />
+    <ClCompile Include="source\Managers\InputManager.cpp" />
     <ClCompile Include="source\GameObjects\Cannon.cpp" />
     <ClCompile Include="source\GameObjects\Laser.cpp" />
     <ClCompile Include="source\GameConstants.cpp" />
     <ClCompile Include="source\GameObjects\Invader.cpp" />
+    <ClCompile Include="source\Managers\ObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />

@@ -11,11 +11,8 @@ Game::Game()
 
 Game::~Game()
 {
-    delete Renderer;
-    for (GameObject* Object : GameObjects)
-    {
-        delete Object;
-    }
+   delete Renderer;
+   ObjectManager::Get().Clear();
 }
 
 void Game::Init()
@@ -28,7 +25,7 @@ void Game::Init()
     SpriteShader.Use();
     SpriteShader.SetInteger("image", 0);
     SpriteShader.SetMatrix4("projection", projection);
-    // set render-specific controls
+    // create sprite renderer
     Renderer = new SpriteRenderer(SpriteShader);
     // load textures
     ResourceManager::LoadTexture("resources/textures/cannon.png", true, "cannon");
@@ -38,10 +35,10 @@ void Game::Init()
     // configure game objects
     Player = new Cannon(ResourceManager::GetTexture("cannon"));
     PLayerLaser = new Laser(ResourceManager::GetTexture("laser"));
-    Player->pLaser = PLayerLaser;
-    GameObjects.push_back(Player);
-    GameObjects.push_back(PLayerLaser);
-    GameObjects.push_back(new Invader(ResourceManager::GetTexture("crab_down")));
+    Player->AssignLaser(PLayerLaser);
+    ObjectManager::Get().Add(Player);
+    ObjectManager::Get().Add(PLayerLaser);
+    ObjectManager::Get().Add(new Invader(ResourceManager::GetTexture("crab_down")));
 }
 
 void Game::ProcessInput(float dt) const
@@ -53,53 +50,11 @@ void Game::ProcessInput(float dt) const
     }
 }
 
-bool Game::CheckOverlap(GameObject* object1, GameObject* object2) const
-{
-    if ((object1->CanCollideWith & object2->CollisionID) != 0)
-    {
-        if (object1->Position.y < object2->Position.y + object2->Size.y &&
-            object1->Position.y + object1->Size.y > object2->Position.y)
-        {
-            if (object1->Position.x < object2->Position.x + object2->Size.x &&
-                object1->Position.x + object1->Size.x > object2->Position.x)
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-void Game::CheckCollision(GameObject* object1) const
-{
-    if (object1->Destroyed == false)
-    {
-        for (GameObject* object2 : GameObjects)
-        {
-            if (object2->Destroyed == false)
-            {
-                if (CheckOverlap(object1, object2))
-                {
-                    object1->Collided = true;
-                }
-            }
-        }
-    }
-}
-
 void Game::Update(float dt) const
 {
     if (this->State == Game::GameState::GAME_ACTIVE)
     {
-        for (GameObject* object : GameObjects)
-        {
-            object->Update(dt);
-        }
-        for (GameObject* object : GameObjects)
-        {
-            CheckCollision(object);
-        }
+        ObjectManager::Get().Update(dt);
     }
 }
 
@@ -107,12 +62,6 @@ void Game::Render() const
 {
     if (this->State == Game::GameState::GAME_ACTIVE)
     {
-        for (GameObject* object : GameObjects)
-        {
-            if (!object->Destroyed)
-            {
-                object->Draw(*Renderer);
-            }
-        }
+        ObjectManager::Get().Render(Renderer);
     }
 }

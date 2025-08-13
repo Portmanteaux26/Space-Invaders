@@ -27,7 +27,6 @@ public:
     bool Collided;
     bool Destroyed;
     
-    GameObject(Texture2D& _sprite);
     virtual void Update(float dt);
     virtual void Draw(SpriteRenderer& renderer);
 
@@ -39,4 +38,7 @@ protected:
     float Velocity;
     float Rotation;
     bool IsSolid;
+
+    // protected constructor
+    GameObject(Texture2D& _sprite);
 };

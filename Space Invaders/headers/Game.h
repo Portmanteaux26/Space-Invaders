@@ -12,6 +12,7 @@
 #include "InputManager.h"
 #include "Invader.h"
 #include "Laser.h"
+#include "ObjectManager.h"
 #include "ResourceManager.h"
 #include "SpriteRenderer.h"
 

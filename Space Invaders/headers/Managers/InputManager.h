@@ -9,5 +9,5 @@ public:
 
 private:
 	// private constructor
-	InputManager() { }
+	InputManager() {}
 };

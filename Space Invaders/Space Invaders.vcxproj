@@ -25,8 +25,9 @@
     <ClInclude Include="headers\GameObjects\GameObject.h" />
     <ClInclude Include="headers\GameObjects\Invader.h" />
     <ClInclude Include="headers\GameObjects\Laser.h" />
-    <ClInclude Include="headers\InputManager.h" />
-    <ClInclude Include="headers\ResourceManager.h" />
+    <ClInclude Include="headers\Managers\InputManager.h" />
+    <ClInclude Include="headers\Managers\ObjectManager.h" />
+    <ClInclude Include="headers\Managers\ResourceManager.h" />
     <ClInclude Include="headers\Rendering\Shader.h" />
     <ClInclude Include="headers\Rendering\SpriteRenderer.h" />
     <ClInclude Include="headers\Rendering\stb_image.h" />
@@ -40,9 +41,10 @@
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\GameObjects\Laser.cpp" />
     <ClCompile Include="source\glad.c" />
-    <ClCompile Include="source\InputManager.cpp" />
+    <ClCompile Include="source\Managers\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\ResourceManager.cpp" />
+    <ClCompile Include="source\Managers\ObjectManager.cpp" />
+    <ClCompile Include="source\Managers\ResourceManager.cpp" />
     <ClCompile Include="source\Rendering\Shader.cpp" />
     <ClCompile Include="source\Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="source\Rendering\stb_image.cpp" />
@@ -112,7 +114,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;C:\Users\micha\source\repos\Space Invaders\Space Invaders\resources;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\source\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\Rendering;$(IncludePath)</IncludePath>
+    <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;C:\Users\micha\source\repos\Space Invaders\Space Invaders\resources;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\source\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\Rendering;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\Managers;$(IncludePath)</IncludePath>
     <LibraryPath>C:\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

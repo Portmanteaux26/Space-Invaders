@@ -7,7 +7,6 @@
 #include "GameObject.h"
 #include "InputManager.h"
 #include "Laser.h"
-#include "ResourceManager.h"
 
 
 class Cannon : public GameObject
@@ -19,6 +18,7 @@ public:
     Cannon(Texture2D& _sprite);
     ~Cannon();
     virtual void Update(float dt) override;
+    void AssignLaser(Laser* _pLaser);
 
 private:
     void ProcessInput(float dt);

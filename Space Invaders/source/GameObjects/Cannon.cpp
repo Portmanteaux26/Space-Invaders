@@ -62,3 +62,8 @@ void Cannon::Update(float dt)
         ProcessInput(dt);
     }
 }
+
+void Cannon::AssignLaser(Laser* _pLaser)
+{
+    pLaser = _pLaser;
+}
