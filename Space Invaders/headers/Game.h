@@ -31,21 +31,16 @@ public:
     const float Height;
     Game::GameState State;
     SpriteRenderer* Renderer;
-    std::vector<GameObject*> GameObjects;
-    Cannon* Player;
-    Laser* PLayerLaser;
     
     // constructor/destructor
     Game();
     ~Game();
     // game loop
     void ProcessInput(float dt) const;
-    bool CheckOverlap(GameObject* object1, GameObject* object2) const;
-    void CheckCollision(GameObject*) const;
     void Update(float dt) const;
     void Render() const;
 
 private:
-    // initializes game state (load all shaders/textures/levels)
+    // initializes game state (load all shaders/textures/GameObjects)
     void Init();
 };

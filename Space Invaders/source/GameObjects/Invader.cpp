@@ -1,11 +1,11 @@
 #include "Invader.h"
 
 
-Invader::Invader(Texture2D& _sprite)
+Invader::Invader(Texture2D& _sprite, glm::vec2 _position)
 	: GameObject(_sprite)
 {
 	Size = glm::vec2(Sprite.Width, Sprite.Height);
-	Position = glm::vec2(GameConstants::PlayableX / 2.0f - Size.x / 2.0f, GameConstants::PlayableY / 2.0f);
+	Position = _position;
 	CollisionID = ColMaskInvader;
 	CanCollideWith = ColMaskLaser;
 }

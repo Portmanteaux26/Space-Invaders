@@ -12,7 +12,6 @@ GameObject::GameObject(Texture2D& _sprite)
     , Color(glm::vec3(1.0f))
     , Velocity(0.0f)
     , Rotation(0.0f)
-    , IsSolid(true)
 { }
 
 void GameObject::Update(float dt)
@@ -26,5 +25,8 @@ void GameObject::Update(float dt)
 
 void GameObject::Draw(SpriteRenderer& renderer)
 {
-    renderer.DrawSprite(this->Sprite, this->Position, this->Size, this->Rotation, this->Color);
+    if (!Destroyed)
+    {
+        renderer.DrawSprite(Sprite, Position, Size, Rotation, Color);
+    }
 }

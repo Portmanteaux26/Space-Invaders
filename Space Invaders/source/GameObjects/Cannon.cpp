@@ -15,8 +15,7 @@ Cannon::Cannon(Texture2D& _sprite)
     pLaser = nullptr;
 }
 
-Cannon::~Cannon()
-{ }
+Cannon::~Cannon() {}
 
 void Cannon::ProcessInput(float dt)
 {

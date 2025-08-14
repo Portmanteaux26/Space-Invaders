@@ -32,13 +32,34 @@ void Game::Init()
     ResourceManager::LoadTexture("resources/textures/laser.png", true, "laser");
     ResourceManager::LoadTexture("resources/textures/crab_down.png", true, "crab_down");
     ResourceManager::LoadTexture("resources/textures/crab_up.png", true, "crab_up");
-    // configure game objects
-    Player = new Cannon(ResourceManager::GetTexture("cannon"));
-    PLayerLaser = new Laser(ResourceManager::GetTexture("laser"));
-    Player->AssignLaser(PLayerLaser);
+    // configure player's Cannon
+    Cannon* Player = new Cannon(ResourceManager::GetTexture("cannon"));
     ObjectManager::Get().Add(Player);
+    // configure player's Laser
+    Laser* PLayerLaser = new Laser(ResourceManager::GetTexture("laser"));
+    Player->AssignLaser(PLayerLaser);
     ObjectManager::Get().Add(PLayerLaser);
-    ObjectManager::Get().Add(new Invader(ResourceManager::GetTexture("crab_down")));
+    // configure invaders
+    int numRows = 5;
+    int InvadersPerRow = 11;
+    float InvaderInitX = 94.0f;
+    float InvaderInitY = 128.0f;
+    float InvaderGap = 24.0f;
+    glm::vec2 InvaderPosition = glm::vec2(InvaderInitX, InvaderInitY);
+    for (int i = 0; i < numRows; i++)
+    {
+        for (int j = 0; j < InvadersPerRow; j++)
+        {
+            Invader* newInvader = new Invader(ResourceManager::GetTexture("crab_down"), InvaderPosition);
+            ObjectManager::Get().Add(newInvader);
+            InvaderPosition.x += newInvader->Size.x + InvaderGap;
+            if (j == InvadersPerRow - 1)
+            {
+                InvaderPosition.x = InvaderInitX;
+                InvaderPosition.y += newInvader->Size.y + InvaderGap;
+            }
+        }
+    }
 }
 
 void Game::ProcessInput(float dt) const

@@ -37,7 +37,6 @@ protected:
     // object state
     float Velocity;
     float Rotation;
-    bool IsSolid;
 
     // protected constructor
     GameObject(Texture2D& _sprite);

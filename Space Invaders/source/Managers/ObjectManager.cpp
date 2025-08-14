@@ -18,6 +18,7 @@ void ObjectManager::Clear()
 	{
 		delete object;
 	}
+    GameObjects.clear();
 }
 
 bool ObjectManager::CheckOverlap(GameObject* object1, GameObject* object2) const
@@ -71,9 +72,6 @@ void ObjectManager::Render(SpriteRenderer* Renderer) const
 {
     for (GameObject* object : GameObjects)
     {
-        if (!object->Destroyed)
-        {
-            object->Draw(*Renderer);
-        }
+        object->Draw(*Renderer);
     }
 }
