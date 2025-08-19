@@ -35,7 +35,6 @@ protected:
     Texture2D& Sprite;
     glm::vec3 Color;
     // object state
-    float Velocity;
     float Rotation;
 
     // protected constructor

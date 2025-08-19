@@ -11,6 +11,7 @@
 #include "GameObject.h"
 #include "InputManager.h"
 #include "Invader.h"
+#include "InvaderController.h"
 #include "Laser.h"
 #include "ObjectManager.h"
 #include "ResourceManager.h"
@@ -31,6 +32,7 @@ public:
     const float Height;
     Game::GameState State;
     SpriteRenderer* Renderer;
+    InvaderController* pInvaderController;
     
     // constructor/destructor
     Game();

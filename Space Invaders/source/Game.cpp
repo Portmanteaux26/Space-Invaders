@@ -12,20 +12,19 @@ Game::Game()
 Game::~Game()
 {
    delete Renderer;
+   delete pInvaderController;
    ObjectManager::Get().Clear();
 }
 
 void Game::Init()
 {
-    // load shaders
+    // load shaders and configure SpriteRenderer
     ResourceManager::LoadShader("resources/shaders/sprite.vs", "resources/shaders/sprite.fs", nullptr, "sprite");
-    // configure shaders
     glm::mat4 projection = glm::ortho(0.0f, this->Width, this->Height, 0.0f, -1.0f, 1.0f);
     Shader SpriteShader = ResourceManager::GetShader("sprite");
     SpriteShader.Use();
     SpriteShader.SetInteger("image", 0);
     SpriteShader.SetMatrix4("projection", projection);
-    // create sprite renderer
     Renderer = new SpriteRenderer(SpriteShader);
     // load textures
     ResourceManager::LoadTexture("resources/textures/cannon.png", true, "cannon");
@@ -39,26 +38,26 @@ void Game::Init()
     Laser* PLayerLaser = new Laser(ResourceManager::GetTexture("laser"));
     Player->AssignLaser(PLayerLaser);
     ObjectManager::Get().Add(PLayerLaser);
-    // configure invaders
+    // configure Invaders
     int numRows = 5;
     int InvadersPerRow = 11;
     float InvaderInitX = 94.0f;
     float InvaderInitY = 128.0f;
-    float InvaderGap = 24.0f;
+    float InvaderGap = 32.0f;
     glm::vec2 InvaderPosition = glm::vec2(InvaderInitX, InvaderInitY);
+    pInvaderController = new InvaderController();
     for (int i = 0; i < numRows; i++)
     {
         for (int j = 0; j < InvadersPerRow; j++)
         {
             Invader* newInvader = new Invader(ResourceManager::GetTexture("crab_down"), InvaderPosition);
             ObjectManager::Get().Add(newInvader);
+            pInvaderController->Add(newInvader);
             InvaderPosition.x += newInvader->Size.x + InvaderGap;
-            if (j == InvadersPerRow - 1)
-            {
-                InvaderPosition.x = InvaderInitX;
-                InvaderPosition.y += newInvader->Size.y + InvaderGap;
-            }
         }
+        // reset X offset and increment Y offset for next row
+        InvaderPosition.x = InvaderInitX;
+        InvaderPosition.y += static_cast<float>(ResourceManager::GetTexture("crab_down").Height) + InvaderGap;
     }
 }
 
@@ -75,6 +74,7 @@ void Game::Update(float dt) const
 {
     if (this->State == Game::GameState::GAME_ACTIVE)
     {
+        pInvaderController->Update(dt);
         ObjectManager::Get().Update(dt);
     }
 }

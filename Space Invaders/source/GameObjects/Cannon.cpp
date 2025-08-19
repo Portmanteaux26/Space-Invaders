@@ -10,9 +10,9 @@ Cannon::Cannon(Texture2D& _sprite)
     Position = glm::vec2(x, y);
     CollisionID = ColMaskCannon;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile);
-    Color = glm::vec3(0.0f, 255.0f, 0.0f);
-    Velocity = 500.0f;
+    Color = glm::vec3(0.0f, 1.0f, 0.0f);
     pLaser = nullptr;
+    VelocityX = 500.0f;
 }
 
 Cannon::~Cannon() {}
@@ -20,7 +20,7 @@ Cannon::~Cannon() {}
 void Cannon::ProcessInput(float dt)
 {
     float right_bound = GameConstants::PlayableX - this->Size.x;
-    float distance = this->Velocity * dt;
+    float distance = this->VelocityX * dt;
     // move left
     if (InputManager::Get().keys[GLFW_KEY_A])
     {

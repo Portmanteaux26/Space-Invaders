@@ -7,7 +7,7 @@ Laser::Laser(Texture2D& _sprite)
     Size = glm::vec2(20.0f, 20.0f);
     CollisionID = ColMaskLaser;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskBunker);
-    Velocity = 500.0f;
+    VelocityY = 500.0f;
 }
 
 void Laser::Update(float dt)
@@ -16,7 +16,7 @@ void Laser::Update(float dt)
 
     if (!Destroyed)
     {
-        Position.y -= Velocity * dt;
+        Position.y -= VelocityY * dt;
     }
     if (Position.y <= 0.0f)
     {

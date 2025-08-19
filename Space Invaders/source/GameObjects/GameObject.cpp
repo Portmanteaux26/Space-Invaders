@@ -10,7 +10,6 @@ GameObject::GameObject(Texture2D& _sprite)
     , CanCollideWith()
     , Sprite(_sprite)
     , Color(glm::vec3(1.0f))
-    , Velocity(0.0f)
     , Rotation(0.0f)
 { }
 

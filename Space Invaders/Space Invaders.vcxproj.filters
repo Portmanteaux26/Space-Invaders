@@ -14,6 +14,7 @@
     <ClInclude Include="headers\GameConstants.h" />
     <ClInclude Include="headers\GameObjects\Invader.h" />
     <ClInclude Include="headers\Managers\ObjectManager.h" />
+    <ClInclude Include="headers\InvaderController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="source\GameConstants.cpp" />
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\Managers\ObjectManager.cpp" />
+    <ClCompile Include="source\InvaderController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />

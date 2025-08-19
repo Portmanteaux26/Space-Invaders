@@ -8,9 +8,6 @@ Invader::Invader(Texture2D& _sprite, glm::vec2 _position)
 	Position = _position;
 	CollisionID = ColMaskInvader;
 	CanCollideWith = ColMaskLaser;
-}
-
-void Invader::Update(float dt)
-{
-	GameObject::Update(dt);
+	VelocityX = 25.0f;
+	VelocityY = 32.0f;
 }
