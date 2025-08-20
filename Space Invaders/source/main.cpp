@@ -6,7 +6,11 @@
 #include "InputManager.h"
 #include "ResourceManager.h"
 
+#include <chrono>
 #include <iostream>
+#include <thread>
+
+#define FRAME_LIMITING 1
 
 
 // GLFW function declarations
@@ -57,6 +61,10 @@ int main(int argc, char* argv[])
     // -------------------
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
+    constexpr float TargetFrameTime = 1.0f / 60.0f;
+
+    float fpsTimer = 0.0f;
+    unsigned int FrameCounter = 0;
 
     while (!glfwWindowShouldClose(window))
     {
@@ -66,6 +74,16 @@ int main(int argc, char* argv[])
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         glfwPollEvents();
+
+        fpsTimer += deltaTime;
+        FrameCounter++;
+
+        if (fpsTimer >= 1.0f) // every second
+        {
+            std::cout << "FPS: " << FrameCounter << std::endl;
+            FrameCounter = 0;
+            fpsTimer = 0.0f;
+        }
 
         // manage user input
         // -----------------
@@ -80,10 +98,17 @@ int main(int argc, char* argv[])
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         SpaceInvaders.Render();
-
         glfwSwapBuffers(window);
+#if FRAME_LIMITING
+        // wait for next frame
+        float TimeSpent = static_cast<float>(glfwGetTime()) - currentFrame;
+        float TimeLeft = std::max(0.0f, TargetFrameTime - TimeSpent) / 3.0f;
+        if (TimeLeft > 0)
+        {
+            std::this_thread::sleep_for(std::chrono::duration<float>(TimeLeft));
+        }
+#endif
     }
-
     // delete all resources as loaded using the resource manager
     // ---------------------------------------------------------
     ResourceManager::Clear();
