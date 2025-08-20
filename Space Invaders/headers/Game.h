@@ -32,17 +32,19 @@ public:
     const float Height;
     Game::GameState State;
     SpriteRenderer* Renderer;
-    InvaderController* pInvaderController;
+    InvaderController iController;
     
     // constructor/destructor
     Game();
     ~Game();
     // game loop
     void ProcessInput(float dt) const;
-    void Update(float dt) const;
+    void Update(float dt);
     void Render() const;
 
 private:
-    // initializes game state (load all shaders/textures/GameObjects)
     void Init();
+    void BuildRenderer();
+    void LoadTextures() const;
+    void ConfigureGameObjects();
 };

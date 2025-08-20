@@ -9,14 +9,13 @@
 class InvaderController
 {
 public:
-    InvaderController();
-    void Add(Invader* invader);
+    void Add(Invader* pInvader);
     void Update(float dt);
 
 private:
     std::vector<Invader*> Invaders;
-    float VelocityX;
-    float VelocityY;
+    float VelocityX = 8.0f;
+    float VelocityY = 32.0f;
 
     bool CheckEdgeCollision() const;
 };

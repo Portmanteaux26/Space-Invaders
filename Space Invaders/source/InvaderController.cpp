@@ -1,14 +1,9 @@
 #include "InvaderController.h"
 
 
-InvaderController::InvaderController()
-	: VelocityX(25.0f)
-	, VelocityY(32.0f)
-{ }
-
-void InvaderController::Add(Invader* invader)
+void InvaderController::Add(Invader* pInvader)
 {
-	Invaders.push_back(invader);
+	Invaders.push_back(pInvader);
 }
 
 void InvaderController::Update(float dt)

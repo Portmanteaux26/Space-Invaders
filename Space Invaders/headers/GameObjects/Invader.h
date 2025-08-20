@@ -9,8 +9,4 @@ class Invader : public GameObject
 {
 public:
 	Invader(Texture2D& _sprite, glm::vec2 _position);
-
-private:
-	float VelocityX;
-	float VelocityY;
 };
