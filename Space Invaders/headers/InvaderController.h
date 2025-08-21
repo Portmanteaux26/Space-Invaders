@@ -4,19 +4,27 @@
 
 #include "GameConstants.h"
 
-class Invader;
+class Invader;  // avoid circular includes by forward declaring Invader*
 
+
+
+enum class InvaderMovementState
+{
+    None,
+    StepSide,
+    StepDown
+};
 
 class InvaderController
 {
 public:
+    static InvaderMovementState MovementState;
+
     void Add(Invader* pInvader);
     void Update(float dt);
-    static bool StepDownFlag;
-    static bool StepSideFlag;
 
 private:
-    std::vector<Invader*> Invaders;
+    std::vector<Invader*> InvaderGroup;
     float TimeElapsed = 0.0f;
 
     bool ShouldStepDown() const;

@@ -1,4 +1,8 @@
+#include "Cannon.h"
 #include "Game.h"
+#include "Invader.h"
+#include "ObjectManager.h"
+#include "ResourceManager.h"
 
 
 Game::Game()

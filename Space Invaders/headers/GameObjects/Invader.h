@@ -1,9 +1,6 @@
 #pragma once
 
-#include "GameConstants.h"
 #include "GameObject.h"
-#include "InvaderController.h"
-#include "ResourceManager.h"
 
 
 class Invader : public GameObject

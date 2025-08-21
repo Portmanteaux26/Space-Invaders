@@ -1,20 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-
-#include <vector>
-
-#include "Cannon.h"
-#include "GameConstants.h"
-#include "GameObject.h"
-#include "InputManager.h"
-#include "Invader.h"
 #include "InvaderController.h"
-#include "Laser.h"
-#include "ObjectManager.h"
-#include "ResourceManager.h"
 #include "SpriteRenderer.h"
 
 

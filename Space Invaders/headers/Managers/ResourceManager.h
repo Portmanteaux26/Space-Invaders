@@ -3,8 +3,6 @@
 #include <map>
 #include <string>
 
-#include <glad/glad.h>
-
 #include "Texture.h"
 #include "Shader.h"
 

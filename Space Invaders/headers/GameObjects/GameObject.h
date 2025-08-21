@@ -6,7 +6,6 @@
 #include "SpriteRenderer.h"
 
 
-
 class GameObject
 {
 public:

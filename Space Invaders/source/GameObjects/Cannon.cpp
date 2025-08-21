@@ -1,4 +1,9 @@
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
+
 #include "Cannon.h"
+#include "GameConstants.h"
+#include "InputManager.h"
 
 
 Cannon::Cannon(Texture2D& _sprite)

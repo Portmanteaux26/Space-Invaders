@@ -2,29 +2,27 @@
 #include "InvaderController.h"
 
 
-bool InvaderController::StepDownFlag = false;
-bool InvaderController::StepSideFlag = false;
-
+// initialize static
+InvaderMovementState InvaderController::MovementState = InvaderMovementState::None;
 
 void InvaderController::Add(Invader* pInvader)
 {
-	Invaders.push_back(pInvader);
+	InvaderGroup.push_back(pInvader);
 }
 
 void InvaderController::Update(float dt)
 {
 	TimeElapsed += dt;
-	StepDownFlag = false;
-	StepSideFlag = false;
+	MovementState = InvaderMovementState::None;
 	if (TimeElapsed >= GameConstants::MaxStepSpeed)
 	{
 		if (ShouldStepDown())
 		{
-			StepDownFlag = true;
+			MovementState = InvaderMovementState::StepDown;
 		}
 		else
 		{
-			StepSideFlag = true;
+			MovementState = InvaderMovementState::StepSide;
 		}
 		TimeElapsed = 0.0f;
 	}
@@ -32,7 +30,7 @@ void InvaderController::Update(float dt)
 
 bool InvaderController::ShouldStepDown() const
 {
-	for (const Invader* invader : Invaders)
+	for (const Invader* invader : InvaderGroup)
 	{
 		if (!invader->Destroyed)
 		{
