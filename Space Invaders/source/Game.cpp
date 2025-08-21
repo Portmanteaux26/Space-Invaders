@@ -51,25 +51,20 @@ void Game::ConfigureGameObjects()
     Player->AssignLaser(PLayerLaser);
     ObjectManager::Get().Add(PLayerLaser);
     // configure Invaders
-    int numRows = 5;
-    int InvadersPerRow = 11;
-    float InvaderInitX = 94.0f;
-    float InvaderInitY = 128.0f;
-    float InvaderGap = 32.0f;
     Texture2D& CrabSprite = ResourceManager::GetTexture("crab_down");
-    glm::vec2 InvaderPosition = glm::vec2(InvaderInitX, InvaderInitY);
-    for (int i = 0; i < numRows; i++)
+    glm::vec2 InvaderPosition = glm::vec2(GameConstants::InvaderInitX, GameConstants::InvaderInitY);
+    for (int i = 0; i < GameConstants::NumRows; i++)
     {
-        for (int j = 0; j < InvadersPerRow; j++)
+        for (int j = 0; j < GameConstants::InvadersPerRow; j++)
         {
             Invader* newInvader = new Invader(CrabSprite, InvaderPosition);
             ObjectManager::Get().Add(newInvader);
             iController.Add(newInvader);
-            InvaderPosition.x += newInvader->Size.x + InvaderGap;
+            InvaderPosition.x += newInvader->Size.x + GameConstants::InvaderGapX;
         }
         // reset X offset and increment Y offset for next row
-        InvaderPosition.x = InvaderInitX;
-        InvaderPosition.y += static_cast<float>(CrabSprite.Height) + InvaderGap;
+        InvaderPosition.x = GameConstants::InvaderInitX;
+        InvaderPosition.y += static_cast<float>(CrabSprite.Height) + GameConstants::InvaderGapY;
     }
 }
 

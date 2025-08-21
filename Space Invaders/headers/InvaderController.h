@@ -3,7 +3,8 @@
 #include <vector>
 
 #include "GameConstants.h"
-#include "Invader.h"
+
+class Invader;
 
 
 class InvaderController
@@ -11,11 +12,12 @@ class InvaderController
 public:
     void Add(Invader* pInvader);
     void Update(float dt);
+    static bool StepDownFlag;
+    static bool StepSideFlag;
 
 private:
     std::vector<Invader*> Invaders;
-    float VelocityX = 8.0f;
-    float VelocityY = 32.0f;
+    float TimeElapsed = 0.0f;
 
-    bool CheckEdgeCollision() const;
+    bool ShouldStepDown() const;
 };

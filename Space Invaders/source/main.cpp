@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 #if FRAME_LIMITING
         // wait for next frame
         float TimeSpent = static_cast<float>(glfwGetTime()) - currentFrame;
-        float TimeLeft = std::max(0.0f, TargetFrameTime - TimeSpent) / 3.0f;
+        float TimeLeft = std::max(0.0f, TargetFrameTime - TimeSpent) / 2.0f;
         if (TimeLeft > 0)
         {
             std::this_thread::sleep_for(std::chrono::duration<float>(TimeLeft));

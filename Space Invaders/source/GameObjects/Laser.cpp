@@ -4,7 +4,7 @@
 Laser::Laser(Texture2D& _sprite)
 	: GameObject(_sprite)
 {
-    Size = glm::vec2(20.0f, 20.0f);
+    Size = glm::vec2(Sprite.Width, Sprite.Height);
     CollisionID = ColMaskLaser;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskBunker);
     VelocityY = 500.0f;

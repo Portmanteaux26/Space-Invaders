@@ -1,4 +1,9 @@
+#include "Invader.h"
 #include "InvaderController.h"
+
+
+bool InvaderController::StepDownFlag = false;
+bool InvaderController::StepSideFlag = false;
 
 
 void InvaderController::Add(Invader* pInvader)
@@ -8,35 +13,31 @@ void InvaderController::Add(Invader* pInvader)
 
 void InvaderController::Update(float dt)
 {
-	for (Invader* invader : Invaders)
+	TimeElapsed += dt;
+	StepDownFlag = false;
+	StepSideFlag = false;
+	if (TimeElapsed >= GameConstants::MaxStepSpeed)
 	{
-		if (!invader->Destroyed)
+		if (ShouldStepDown())
 		{
-			invader->Position.x += VelocityX * dt;
+			StepDownFlag = true;
 		}
-	}
-
-	if (CheckEdgeCollision())
-	{
-		VelocityX = -VelocityX;
-		for (Invader* invader : Invaders)
+		else
 		{
-			if (!invader->Destroyed)
-			{
-				invader->Position.y += VelocityY;
-			}
+			StepSideFlag = true;
 		}
+		TimeElapsed = 0.0f;
 	}
 }
 
-bool InvaderController::CheckEdgeCollision() const
+bool InvaderController::ShouldStepDown() const
 {
 	for (const Invader* invader : Invaders)
 	{
 		if (!invader->Destroyed)
 		{
-			if ((VelocityX > 0 && invader->Position.x + invader->Size.x >= GameConstants::PlayableX) ||
-				(VelocityX < 0 && invader->Position.x <= 0.0f))
+			if ((invader->Position.x + invader->Size.x + invader->VelocityX >= GameConstants::PlayableX) ||
+				(invader->Position.x + invader->VelocityX <= 0.0f))
 			{
 				return true;
 			}
