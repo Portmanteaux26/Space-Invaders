@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(Texture2D& _sprite)
+GameObject::GameObject(Texture2D* _sprite)
     : Size(glm::vec2(0.0f))
     , Position(glm::vec2(0.0f))
     , Collided(false)
@@ -26,6 +26,6 @@ void GameObject::Draw(SpriteRenderer& renderer)
 {
     if (!Destroyed)
     {
-        renderer.DrawSprite(Sprite, Position, Size, Rotation, Color);
+        renderer.DrawSprite(*Sprite, Position, Size, Rotation, Color);
     }
 }

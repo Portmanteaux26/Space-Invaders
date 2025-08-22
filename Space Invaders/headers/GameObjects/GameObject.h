@@ -31,11 +31,11 @@ public:
 
 protected:
     // render state
-    Texture2D& Sprite;
+    Texture2D* Sprite;
     glm::vec3 Color;
     // object state
     float Rotation;
 
     // protected constructor
-    GameObject(Texture2D& _sprite);
+    GameObject(Texture2D* _sprite);
 };

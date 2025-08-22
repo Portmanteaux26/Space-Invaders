@@ -6,10 +6,10 @@
 #include "InputManager.h"
 
 
-Cannon::Cannon(Texture2D& _sprite)
+Cannon::Cannon(Texture2D* _sprite)
 	: GameObject(_sprite)
 {
-    Size = glm::vec2(Sprite.Width, Sprite.Height);
+    Size = glm::vec2(Sprite->Width, Sprite->Height);
     float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
     float y = GameConstants::PlayableY - this->Size.y - 128.0f;
     Position = glm::vec2(x, y);

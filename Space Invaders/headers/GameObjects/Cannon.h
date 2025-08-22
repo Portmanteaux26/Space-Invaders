@@ -10,7 +10,7 @@ public:
     // holds a pointer to its laser
     Laser* pLaser;
     
-    Cannon(Texture2D& _sprite);
+    Cannon(Texture2D* _sprite);
     ~Cannon();
     virtual void Update(float dt) override;
     void AssignLaser(Laser* _pLaser);

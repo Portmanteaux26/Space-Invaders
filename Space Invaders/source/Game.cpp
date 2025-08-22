@@ -48,14 +48,14 @@ void Game::LoadTextures() const
 void Game::ConfigureGameObjects()
 {
     // configure player's Cannon
-    Cannon* Player = new Cannon(ResourceManager::GetTexture("cannon"));
+    Cannon* Player = new Cannon(&ResourceManager::GetTexture("cannon"));
     ObjectManager::Get().Add(Player);
     // configure player's Laser
-    Laser* PLayerLaser = new Laser(ResourceManager::GetTexture("laser"));
-    Player->AssignLaser(PLayerLaser);
-    ObjectManager::Get().Add(PLayerLaser);
+    Laser* PlayerLaser = new Laser(&ResourceManager::GetTexture("laser"));
+    Player->AssignLaser(PlayerLaser);
+    ObjectManager::Get().Add(PlayerLaser);
     // configure Invaders
-    Texture2D& CrabSprite = ResourceManager::GetTexture("crab_down");
+    Texture2D* CrabSprite = &ResourceManager::GetTexture("crab_down");
     glm::vec2 InvaderPosition = glm::vec2(GameConstants::InvaderInitX, GameConstants::InvaderInitY);
     for (int i = 0; i < GameConstants::NumRows; i++)
     {
@@ -68,7 +68,7 @@ void Game::ConfigureGameObjects()
         }
         // reset X offset and increment Y offset for next row
         InvaderPosition.x = GameConstants::InvaderInitX;
-        InvaderPosition.y += static_cast<float>(CrabSprite.Height) + GameConstants::InvaderGapY;
+        InvaderPosition.y += static_cast<float>(CrabSprite->Height) + GameConstants::InvaderGapY;
     }
 }
 
