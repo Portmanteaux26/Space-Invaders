@@ -3,8 +3,9 @@
 #include "ResourceManager.h"
 
 
-Invader::Invader(Texture2D* _sprite, glm::vec2 _position)
+Invader::Invader(Texture2D* _sprite, Species _species, glm::vec2 _position)
 	: GameObject(_sprite)
+	, mSpecies(_species)
 {
 	Size = glm::vec2(Sprite->Width, Sprite->Height);
 	Position = _position;
@@ -33,11 +34,25 @@ void Invader::IdleAnimation()
 {
 	if (ArmsUp)
 	{
-		Sprite = &ResourceManager::GetTexture("crab_down");
+		if (mSpecies == Invader::Species::Crab)
+		{
+			Sprite = &ResourceManager::GetTexture("crab_down");
+		}
+		else
+		{
+			Sprite = &ResourceManager::GetTexture("octopus_down");
+		}
 	}
 	else
 	{
-		Sprite = &ResourceManager::GetTexture("crab_up");
+		if (mSpecies == Invader::Species::Crab)
+		{
+			Sprite = &ResourceManager::GetTexture("crab_up");
+		}
+		else
+		{
+			Sprite = &ResourceManager::GetTexture("octopus_up");
+		}
 	}
 	ArmsUp = !ArmsUp;
 }

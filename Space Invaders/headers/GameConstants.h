@@ -9,8 +9,8 @@ struct GameConstants
 	static const int InvadersPerRow;
 	static const float InvaderInitX;
 	static const float InvaderInitY;
-	static const float InvaderGapX;
-	static const float InvaderGapY;
+	static const float InvaderStepX;
+	static const float InvaderStepY;
 	static const float MaxStepSpeed;
 	static const float MinStepSpeed;
 };

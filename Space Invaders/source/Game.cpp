@@ -43,6 +43,8 @@ void Game::LoadTextures() const
     ResourceManager::LoadTexture("resources/textures/laser.png", true, "laser");
     ResourceManager::LoadTexture("resources/textures/crab_down.png", true, "crab_down");
     ResourceManager::LoadTexture("resources/textures/crab_up.png", true, "crab_up");
+    ResourceManager::LoadTexture("resources/textures/octopus_down.png", true, "octopus_down");
+    ResourceManager::LoadTexture("resources/textures/octopus_up.png", true, "octopus_up");
 }
 
 void Game::ConfigureGameObjects()
@@ -55,20 +57,38 @@ void Game::ConfigureGameObjects()
     Player->AssignLaser(PlayerLaser);
     ObjectManager::Get().Add(PlayerLaser);
     // configure Invaders
+    Texture2D* SquidSprite = &ResourceManager::GetTexture("crab_down");
     Texture2D* CrabSprite = &ResourceManager::GetTexture("crab_down");
+    Texture2D* OctopusSprite = &ResourceManager::GetTexture("octopus_down");
     glm::vec2 InvaderPosition = glm::vec2(GameConstants::InvaderInitX, GameConstants::InvaderInitY);
     for (int i = 0; i < GameConstants::NumRows; i++)
     {
+        Texture2D* rowSprite = nullptr;
+        Invader::Species rowSpecies = Invader::Species::Squid;
+        if (i == 0)
+        {
+            rowSprite = SquidSprite;
+        }
+        else if (i < 3)
+        {
+            rowSprite = CrabSprite;
+            rowSpecies = Invader::Species::Crab;
+        }
+        else
+        {
+            rowSprite = OctopusSprite;
+            rowSpecies = Invader::Species::Octopus;
+        }
         for (int j = 0; j < GameConstants::InvadersPerRow; j++)
         {
-            Invader* newInvader = new Invader(CrabSprite, InvaderPosition);
+            Invader* newInvader = new Invader(rowSprite, rowSpecies, InvaderPosition);
             ObjectManager::Get().Add(newInvader);
             iController.Add(newInvader);
-            InvaderPosition.x += newInvader->Size.x + GameConstants::InvaderGapX;
+            InvaderPosition.x += GameConstants::InvaderStepX;
         }
         // reset X offset and increment Y offset for next row
         InvaderPosition.x = GameConstants::InvaderInitX;
-        InvaderPosition.y += static_cast<float>(CrabSprite->Height) + GameConstants::InvaderGapY;
+        InvaderPosition.y += GameConstants::InvaderStepY;
     }
 }
 

@@ -61,6 +61,8 @@
     <Image Include="resources\textures\crab_down.png" />
     <Image Include="resources\textures\crab_up.png" />
     <Image Include="resources\textures\laser.png" />
+    <Image Include="resources\textures\octopus_up.png" />
+    <Image Include="resources\textures\octopus_down.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
