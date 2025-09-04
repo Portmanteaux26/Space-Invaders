@@ -33,4 +33,5 @@ private:
     void BuildRenderer();
     void LoadTextures() const;
     void ConfigureGameObjects();
+    void ConfigureInvaders();
 };

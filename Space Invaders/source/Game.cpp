@@ -59,32 +59,45 @@ void Game::ConfigureGameObjects()
     Player->AssignLaser(PlayerLaser);
     ObjectManager::Get().Add(PlayerLaser);
     // configure Invaders
-    glm::vec2 InvaderPosition = glm::vec2(GameConstants::InvaderInitX, GameConstants::InvaderInitY);
-    for (int i = 0; i < GameConstants::NumRows; i++)
+    ConfigureInvaders();
+}
+
+void Game::ConfigureInvaders()
+{
+    glm::vec2 rowStartPos = glm::vec2(GameConstants::InvaderInitX, GameConstants::InvaderInitY);
+    for (int row = 0; row < GameConstants::NumRows; row++)
     {
+        Texture2D* rowSprite = nullptr;
         Invader::Species rowSpecies;
-        if (i == 0)
+        // cache sprites and species enums for inner loop
+        if (row == 0)
         {
+            rowSprite = &ResourceManager::GetTexture("squid_down");
             rowSpecies = Invader::Species::Squid;
         }
-        else if (i < 3)
+        else if (row < 3)
         {
+            rowSprite = &ResourceManager::GetTexture("crab_down");
             rowSpecies = Invader::Species::Crab;
         }
         else
         {
+            rowSprite = &ResourceManager::GetTexture("octopus_down");
             rowSpecies = Invader::Species::Octopus;
         }
-        for (int j = 0; j < GameConstants::InvadersPerRow; j++)
+        for (int col = 0; col < GameConstants::InvadersPerRow; col++)
         {
-            Invader* newInvader = new Invader(rowSpecies, InvaderPosition);
+            // calculate centered position for sprite
+            float cellX = rowStartPos.x + col * GameConstants::InvaderCellX;
+            float centeredX = cellX + (GameConstants::InvaderCellX - rowSprite->Width) / 2.0f;
+            glm::vec2 invaderPos(centeredX, rowStartPos.y);
+            // add Invader with appropriate species and position
+            Invader* newInvader = new Invader(rowSpecies, invaderPos);
             ObjectManager::Get().Add(newInvader);
             iController.Add(newInvader);
-            InvaderPosition.x += GameConstants::InvaderStepX;
         }
-        // reset X offset and increment Y offset for next row
-        InvaderPosition.x = GameConstants::InvaderInitX;
-        InvaderPosition.y += GameConstants::InvaderStepY;
+        // increment Y offset for next row
+        rowStartPos.y += GameConstants::InvaderCellY;
     }
 }
 

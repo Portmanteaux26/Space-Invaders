@@ -35,7 +35,6 @@
     <ClInclude Include="headers\Rendering\Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\GameConstants.cpp" />
     <ClCompile Include="source\GameObjects\Cannon.cpp" />
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\GameObjects\GameObject.cpp" />

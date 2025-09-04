@@ -29,7 +29,6 @@
     <ClCompile Include="source\Managers\InputManager.cpp" />
     <ClCompile Include="source\GameObjects\Cannon.cpp" />
     <ClCompile Include="source\GameObjects\Laser.cpp" />
-    <ClCompile Include="source\GameConstants.cpp" />
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\Managers\ObjectManager.cpp" />
     <ClCompile Include="source\InvaderController.cpp" />
