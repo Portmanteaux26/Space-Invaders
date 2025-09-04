@@ -3,10 +3,23 @@
 #include "ResourceManager.h"
 
 
-Invader::Invader(Texture2D* _sprite, Species _species, glm::vec2 _position)
-	: GameObject(_sprite)
+Invader::Invader(Species _species, glm::vec2 _position)
+	: GameObject()
 	, mSpecies(_species)
 {
+	if (mSpecies == Invader::Species::Squid)
+	{
+		Sprite = &ResourceManager::GetTexture("squid_down");
+	}
+	else if (mSpecies == Invader::Species::Crab)
+	{
+		Sprite = &ResourceManager::GetTexture("crab_down");
+	}
+	else
+	{
+		Sprite = &ResourceManager::GetTexture("octopus_down");
+	}
+
 	Size = glm::vec2(Sprite->Width, Sprite->Height);
 	Position = _position;
 	CollisionID = ColMaskInvader;
@@ -34,7 +47,11 @@ void Invader::IdleAnimation()
 {
 	if (ArmsUp)
 	{
-		if (mSpecies == Invader::Species::Crab)
+		if (mSpecies == Invader::Species::Squid)
+		{
+			Sprite = &ResourceManager::GetTexture("squid_down");
+		}
+		else if (mSpecies == Invader::Species::Crab)
 		{
 			Sprite = &ResourceManager::GetTexture("crab_down");
 		}
@@ -45,7 +62,11 @@ void Invader::IdleAnimation()
 	}
 	else
 	{
-		if (mSpecies == Invader::Species::Crab)
+		if (mSpecies == Invader::Species::Squid)
+		{
+			Sprite = &ResourceManager::GetTexture("squid_up");
+		}
+		else if (mSpecies == Invader::Species::Crab)
 		{
 			Sprite = &ResourceManager::GetTexture("crab_up");
 		}

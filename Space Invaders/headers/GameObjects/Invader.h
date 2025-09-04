@@ -18,7 +18,7 @@ public:
 	float VelocityY = 32.0f;
 	Species mSpecies;
 
-	Invader(Texture2D* _sprite, Species _species, glm::vec2 _position);
+	Invader(Species _species, glm::vec2 _position);
 	virtual void Update(float dt) override;
 
 private:

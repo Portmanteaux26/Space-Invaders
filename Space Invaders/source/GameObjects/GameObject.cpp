@@ -1,14 +1,14 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(Texture2D* _sprite)
+GameObject::GameObject()
     : Size(glm::vec2(0.0f))
     , Position(glm::vec2(0.0f))
     , Collided(false)
     , Destroyed(false)
     , CollisionID()
     , CanCollideWith()
-    , Sprite(_sprite)
+    , Sprite(nullptr)
     , Color(glm::vec3(1.0f))
     , Rotation(0.0f)
 { }

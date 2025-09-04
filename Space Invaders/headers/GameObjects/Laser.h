@@ -6,7 +6,7 @@
 class Laser : public GameObject
 {
 public:
-    Laser(Texture2D* _sprite);
+    Laser();
     virtual void Update(float dt) override;
     void Shoot(const GameObject* shooter);
 

@@ -45,5 +45,7 @@
     <Image Include="resources\textures\cannon.png" />
     <Image Include="resources\textures\octopus_up.png" />
     <Image Include="resources\textures\octopus_down.png" />
+    <Image Include="resources\textures\squid_down.png" />
+    <Image Include="resources\textures\squid_up.png" />
   </ItemGroup>
 </Project>

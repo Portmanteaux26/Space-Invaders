@@ -37,5 +37,5 @@ protected:
     float Rotation;
 
     // protected constructor
-    GameObject(Texture2D* _sprite);
+    GameObject();
 };

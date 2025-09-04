@@ -4,11 +4,13 @@
 #include "Cannon.h"
 #include "GameConstants.h"
 #include "InputManager.h"
+#include "ResourceManager.h"
 
 
-Cannon::Cannon(Texture2D* _sprite)
-	: GameObject(_sprite)
+Cannon::Cannon()
+	: GameObject()
 {
+    Sprite = &ResourceManager::GetTexture("cannon");
     Size = glm::vec2(Sprite->Width, Sprite->Height);
     float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
     float y = GameConstants::PlayableY - this->Size.y - 128.0f;

@@ -1,9 +1,11 @@
 #include "Laser.h"
+#include "ResourceManager.h"
 
 
-Laser::Laser(Texture2D* _sprite)
-	: GameObject(_sprite)
+Laser::Laser()
+	: GameObject()
 {
+    Sprite = &ResourceManager::GetTexture("laser");
     Size = glm::vec2(Sprite->Width, Sprite->Height);
     CollisionID = ColMaskLaser;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskBunker);
