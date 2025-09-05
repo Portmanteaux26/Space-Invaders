@@ -41,7 +41,7 @@ void Cannon::ProcessInput(float dt)
         }
     }
     // move right
-    if (InputManager::Get().keys[GLFW_KEY_D])
+    else if (InputManager::Get().keys[GLFW_KEY_D])
     {
         if (Position.x >= right_bound)
         {
@@ -53,7 +53,7 @@ void Cannon::ProcessInput(float dt)
         }
     }
     // shoot laser
-    if (InputManager::Get().keys[GLFW_KEY_SPACE])
+    else if (InputManager::Get().keys[GLFW_KEY_SPACE])
     {
         pLaser->Shoot(this);
     }
@@ -61,9 +61,12 @@ void Cannon::ProcessInput(float dt)
 
 void Cannon::Update(float dt)
 {
-    GameObject::Update(dt);
+    if (mState == GameObject::State::Collided)
+    {
+        mState = GameObject::State::Destroyed;
+    }
 
-    if (!Destroyed)
+    else if (mState == GameObject::State::Active)
     {
         ProcessInput(dt);
     }

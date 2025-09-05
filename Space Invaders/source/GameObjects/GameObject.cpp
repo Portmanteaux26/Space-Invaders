@@ -4,8 +4,7 @@
 GameObject::GameObject()
     : Size(glm::vec2(0.0f))
     , Position(glm::vec2(0.0f))
-    , Collided(false)
-    , Destroyed(false)
+    , mState(GameObject::State::Active)
     , CollisionID()
     , CanCollideWith()
     , Sprite(nullptr)
@@ -13,18 +12,10 @@ GameObject::GameObject()
     , Rotation(0.0f)
 { }
 
-void GameObject::Update(float dt)
-{
-    if (Collided)
-    {
-        Destroyed = true;
-        Collided = false;
-    }
-}
 
 void GameObject::Draw(SpriteRenderer& renderer)
 {
-    if (!Destroyed)
+    if (mState == GameObject::State::Active || mState == GameObject::State::Exploding)
     {
         renderer.DrawSprite(*Sprite, Position, Size, Rotation, Color);
     }

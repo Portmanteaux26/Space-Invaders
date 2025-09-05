@@ -1,3 +1,4 @@
+#include "GameObject.h"
 #include "ObjectManager.h"
 
 
@@ -41,15 +42,15 @@ bool ObjectManager::CheckOverlap(GameObject* object1, GameObject* object2) const
 
 void ObjectManager::CheckCollision(GameObject* object1) const
 {
-    if (!object1->Destroyed)
+    if (object1->mState == GameObject::State::Active || object1->mState == GameObject::State::Collided)
     {
         for (GameObject* object2 : GameObjects)
         {
-            if (!object2->Destroyed)
+            if (object2->mState == GameObject::State::Active || object2->mState == GameObject::State::Collided)
             {
                 if (CheckOverlap(object1, object2))
                 {
-                    object1->Collided = true;
+                    object1->mState = GameObject::State::Collided;
                 }
             }
         }

@@ -3,8 +3,6 @@
 #include "GameObject.h"
 
 
-
-
 class Invader : public GameObject
 {
 public:
@@ -22,6 +20,7 @@ public:
 	virtual void Update(float dt) override;
 
 private:
+	float ExplosionTimer = 0.0f;
 	bool ArmsUp = false;
 
 	void IdleAnimation();

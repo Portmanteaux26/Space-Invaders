@@ -9,6 +9,15 @@
 class GameObject
 {
 public:
+    enum class State
+    {
+        Active,
+        Collided,
+        Exploding,
+        Destroyed
+    };
+    State mState;
+
     enum CollisionMask
     {
         ColMaskNone = 0,
@@ -20,13 +29,11 @@ public:
     };
     CollisionMask CollisionID;
     CollisionMask CanCollideWith;
-    // object state
+    
     glm::vec2 Size;
     glm::vec2 Position;
-    bool Collided;
-    bool Destroyed;
     
-    virtual void Update(float dt);
+    virtual void Update(float dt) = 0;
     virtual void Draw(SpriteRenderer& renderer);
 
 protected:

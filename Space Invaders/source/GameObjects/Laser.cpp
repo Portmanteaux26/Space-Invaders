@@ -7,6 +7,7 @@ Laser::Laser()
 {
     Sprite = &ResourceManager::GetTexture("laser");
     Size = glm::vec2(Sprite->Width, Sprite->Height);
+    mState = GameObject::State::Destroyed;
     CollisionID = ColMaskLaser;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskBunker);
     VelocityY = 500.0f;
@@ -14,23 +15,28 @@ Laser::Laser()
 
 void Laser::Update(float dt)
 {
-    GameObject::Update(dt);
+    if (mState == GameObject::State::Collided)
+    {
+        mState = GameObject::State::Destroyed;
+    }
 
-    if (!Destroyed)
+    else if (mState == GameObject::State::Active)
     {
         Position.y -= VelocityY * dt;
+
+        if (Position.y <= 0.0f)
+        {
+            mState = GameObject::State::Collided;
+        }
     }
-    if (Position.y <= 0.0f)
-    {
-        Destroyed = true;
-    }
+    
 }
 
 void Laser::Shoot(const GameObject* shooter)
 {
-    if (Destroyed)
+    if (mState == GameObject::State::Destroyed)
     {
-        Destroyed = false;
+        mState = GameObject::State::Active;
         this->Position.x = shooter->Position.x + shooter->Size.x / 2.0f - this->Size.x / 2.0f;
         this->Position.y = shooter->Position.y - this->Size.y;
     }

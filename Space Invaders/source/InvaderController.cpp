@@ -32,7 +32,7 @@ bool InvaderController::ShouldStepDown() const
 {
 	for (const Invader* invader : InvaderGroup)
 	{
-		if (!invader->Destroyed)
+		if (invader->mState == GameObject::State::Active)
 		{
 			if ((invader->Position.x + invader->Size.x + invader->VelocityX >= GameConstants::PlayableX) ||
 				(invader->Position.x + invader->VelocityX <= 0.0f))

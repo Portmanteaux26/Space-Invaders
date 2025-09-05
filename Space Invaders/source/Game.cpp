@@ -47,6 +47,7 @@ void Game::LoadTextures() const
     ResourceManager::LoadTexture("resources/textures/crab_up.png", true, "crab_up");
     ResourceManager::LoadTexture("resources/textures/octopus_down.png", true, "octopus_down");
     ResourceManager::LoadTexture("resources/textures/octopus_up.png", true, "octopus_up");
+    ResourceManager::LoadTexture("resources/textures/invader_explosion.png", true, "invader_explosion");
 }
 
 void Game::ConfigureGameObjects()

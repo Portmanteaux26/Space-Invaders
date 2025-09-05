@@ -28,18 +28,38 @@ Invader::Invader(Species _species, glm::vec2 _position)
 
 void Invader::Update(float dt)
 {
-	GameObject::Update(dt);
-
-	if (InvaderController::MovementState == InvaderMovementState::StepDown)
+	if (mState == GameObject::State::Collided)
 	{
-		VelocityX = -VelocityX;
-		Position.y += VelocityY;
-		IdleAnimation();
+		mState = GameObject::State::Exploding;
+		Sprite = &ResourceManager::GetTexture("invader_explosion");
 	}
-	else if (InvaderController::MovementState == InvaderMovementState::StepSide)
+
+	else if (mState == GameObject::State::Exploding)
 	{
-		Position.x += VelocityX;
-		IdleAnimation();
+		if (ExplosionTimer > 0.2f)
+		{
+			mState = GameObject::State::Destroyed;
+			ExplosionTimer = 0.0f;
+		}
+		else
+		{
+			ExplosionTimer += dt;
+		}
+	}
+
+	else if (mState == GameObject::State::Active)
+	{
+		if (InvaderController::MovementState == InvaderMovementState::StepDown)
+		{
+			VelocityX = -VelocityX;
+			Position.y += VelocityY;
+			IdleAnimation();
+		}
+		else if (InvaderController::MovementState == InvaderMovementState::StepSide)
+		{
+			Position.x += VelocityX;
+			IdleAnimation();
+		}
 	}
 }
 
