@@ -128,6 +128,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\glfw-3.4\include;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers;C:\Users\micha\source\repos\Space Invaders\Space Invaders\resources;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\source\GameObjects;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\Rendering;C:\Users\micha\source\repos\Space Invaders\Space Invaders\headers\Managers;$(IncludePath)</IncludePath>
     <LibraryPath>C:\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

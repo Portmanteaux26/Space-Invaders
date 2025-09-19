@@ -22,7 +22,7 @@ void ObjectManager::Clear()
     GameObjects.clear();
 }
 
-bool ObjectManager::CheckOverlap(GameObject* object1, GameObject* object2) const
+bool ObjectManager::CheckOverlap(const GameObject* object1, const GameObject* object2) const
 {
     if ((object1->CanCollideWith & object2->CollisionID) != 0)
     {
@@ -42,15 +42,16 @@ bool ObjectManager::CheckOverlap(GameObject* object1, GameObject* object2) const
 
 void ObjectManager::CheckCollision(GameObject* object1) const
 {
-    if (object1->mState == GameObject::State::Active || object1->mState == GameObject::State::Collided)
+    if (object1->mState == GameObject::State::Active)
     {
         for (GameObject* object2 : GameObjects)
         {
-            if (object2->mState == GameObject::State::Active || object2->mState == GameObject::State::Collided)
+            if (object2->mState == GameObject::State::Active)
             {
                 if (CheckOverlap(object1, object2))
                 {
-                    object1->mState = GameObject::State::Collided;
+                    object1->DoCollision(object2);
+                    object2->DoCollision(object1);
                 }
             }
         }

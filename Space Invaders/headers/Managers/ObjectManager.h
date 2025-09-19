@@ -19,6 +19,6 @@ public:
 private:
 	// private constructor
 	ObjectManager() {}
-	bool CheckOverlap(GameObject* object1, GameObject* object2) const;
+	bool CheckOverlap(const GameObject* object1, const GameObject* object2) const;
 	void CheckCollision(GameObject* object1) const;
 };

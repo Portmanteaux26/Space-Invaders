@@ -12,7 +12,6 @@ public:
     enum class State
     {
         Active,
-        Collided,
         Exploding,
         Destroyed
     };
@@ -33,6 +32,7 @@ public:
     glm::vec2 Size;
     glm::vec2 Position;
     
+    virtual void DoCollision(const GameObject* partner);
     virtual void Update(float dt) = 0;
     virtual void Draw(SpriteRenderer& renderer);
 

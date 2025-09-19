@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
     {
         // calculate delta time
         // --------------------
-        float currentFrame = static_cast<float>(glfwGetTime());
+        const float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         glfwPollEvents();
@@ -101,8 +101,8 @@ int main(int argc, char* argv[])
         glfwSwapBuffers(window);
 #if FRAME_LIMITING
         // wait for next frame
-        float TimeSpent = static_cast<float>(glfwGetTime()) - currentFrame;
-        float TimeLeft = std::max(0.0f, TargetFrameTime - TimeSpent) / 2.0f;
+        const float TimeSpent = static_cast<float>(glfwGetTime()) - currentFrame;
+        const float TimeLeft = std::max(0.0f, TargetFrameTime - TimeSpent) / 2.0f;
         if (TimeLeft > 0)
         {
             std::this_thread::sleep_for(std::chrono::duration<float>(TimeLeft));

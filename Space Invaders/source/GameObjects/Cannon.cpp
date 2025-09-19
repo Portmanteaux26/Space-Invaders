@@ -13,24 +13,24 @@ Cannon::Cannon()
 {
     Sprite = &ResourceManager::GetTexture("cannon");
     Size = glm::vec2(Sprite->Width, Sprite->Height);
-    float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
-    float y = GameConstants::PlayableY - this->Size.y - 128.0f;
+    const float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
+    const float y = GameConstants::PlayableY - this->Size.y - 128.0f;
     Position = glm::vec2(x, y);
     CollisionID = ColMaskCannon;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile);
     Color = glm::vec3(0.0f, 1.0f, 0.0f);
 }
 
-Cannon::~Cannon() {}
+void Cannon::DoCollision(const GameObject* partner)
+{
+    const float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
+    const float y = GameConstants::PlayableY - this->Size.y - 128.0f;
+    Position = glm::vec2(x, y);
+}
 
 void Cannon::Update(float dt)
 {
-    if (mState == GameObject::State::Collided)
-    {
-        mState = GameObject::State::Destroyed;
-    }
-
-    else if (mState == GameObject::State::Active)
+    if (mState == GameObject::State::Active)
     {
         ProcessInput(dt);
     }
@@ -43,8 +43,8 @@ void Cannon::AssignLaser(Laser* _pLaser)
 
 void Cannon::ProcessInput(float dt)
 {
-    float right_bound = GameConstants::PlayableX - this->Size.x;
-    float distance = this->VelocityX * dt;
+    float const right_bound = GameConstants::PlayableX - this->Size.x;
+    float const distance = this->VelocityX * dt;
     // move left
     if (InputManager::Get().keys[GLFW_KEY_A])
     {

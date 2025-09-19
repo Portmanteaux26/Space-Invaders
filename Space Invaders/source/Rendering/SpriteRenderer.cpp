@@ -42,7 +42,7 @@ void SpriteRenderer::initRenderData()
 {
     // configure VAO/VBO
     unsigned int VBO;
-    float vertices[] =
+    const float vertices[] =
     {
         // pos      // tex
         0.0f, 1.0f, 0.0f, 1.0f,

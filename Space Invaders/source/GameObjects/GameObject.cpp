@@ -12,6 +12,10 @@ GameObject::GameObject()
     , Rotation(0.0f)
 { }
 
+void GameObject::DoCollision(const GameObject* partner)
+{
+    mState = GameObject::State::Destroyed;
+}
 
 void GameObject::Draw(SpriteRenderer& renderer)
 {

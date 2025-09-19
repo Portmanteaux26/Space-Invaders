@@ -15,18 +15,13 @@ Laser::Laser()
 
 void Laser::Update(float dt)
 {
-    if (mState == GameObject::State::Collided)
-    {
-        mState = GameObject::State::Destroyed;
-    }
-
-    else if (mState == GameObject::State::Active)
+   if (mState == GameObject::State::Active)
     {
         Position.y -= VelocityY * dt;
 
         if (Position.y <= 0.0f)
         {
-            mState = GameObject::State::Collided;
+            mState = GameObject::State::Destroyed;
         }
     }
 }

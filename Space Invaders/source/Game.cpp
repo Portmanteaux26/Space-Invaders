@@ -30,7 +30,7 @@ void Game::Init()
 void Game::BuildRenderer()
 {
     ResourceManager::LoadShader("resources/shaders/sprite.vs", "resources/shaders/sprite.fs", nullptr, "sprite");
-    glm::mat4 projection = glm::ortho(0.0f, this->Width, this->Height, 0.0f, -1.0f, 1.0f);
+    const glm::mat4 projection = glm::ortho(0.0f, this->Width, this->Height, 0.0f, -1.0f, 1.0f);
     Shader SpriteShader = ResourceManager::GetShader("sprite");
     SpriteShader.Use();
     SpriteShader.SetInteger("image", 0);
@@ -102,9 +102,9 @@ void Game::ConfigureInvaders()
         for (int col = 0; col < GameConstants::InvadersPerRow; col++)
         {
             // calculate centered position for sprite
-            float cellX = rowStartPos.x + col * GameConstants::InvaderCellX;
-            float centeredX = cellX + (GameConstants::InvaderCellX - rowSprite->Width) / 2.0f;
-            glm::vec2 invaderPos(centeredX, rowStartPos.y);
+            const float cellX = rowStartPos.x + col * GameConstants::InvaderCellX;
+            const float centeredX = cellX + (GameConstants::InvaderCellX - rowSprite->Width) / 2.0f;
+            const glm::vec2 invaderPos(centeredX, rowStartPos.y);
             // add Invader with appropriate species and position
             Invader* newInvader = new Invader(rowSpecies, invaderPos);
             ObjectManager::Get().Add(newInvader);

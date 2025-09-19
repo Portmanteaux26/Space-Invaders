@@ -18,15 +18,22 @@ Missile::Missile()
 	CanCollideWith = CollisionMask(ColMaskCannon | ColMaskLaser | ColMaskBunker);
 }
 
-void Missile::Update(float dt)
+void Missile::DoCollision(const GameObject* partner)
 {
-	if (mState == GameObject::State::Collided)
+	if (partner->CollisionID & ColMaskLaser)
 	{
 		mState = GameObject::State::Exploding;
 		Sprite = &ResourceManager::GetTexture("missile_explosion");
 	}
+	else
+	{
+		mState = GameObject::State::Destroyed;
+	}
+}
 
-	else if (mState == GameObject::State::Exploding)
+void Missile::Update(float dt)
+{
+	if (mState == GameObject::State::Exploding)
 	{
 		if (ExplosionTimer > 0.2f)
 		{
@@ -45,9 +52,13 @@ void Missile::Update(float dt)
 		Position.y += VelocityY * dt;
 		if (Position.y + Size.y >= GameConstants::PlayableY)
 		{
-			mState = GameObject::State::Collided;
+			mState = GameObject::State::Exploding;
+			this->Sprite = &ResourceManager::GetTexture("missile_explosion");
 		}
-		AnimCycle(dt);
+		else
+		{
+			AnimCycle(dt);
+		}
 	}
 }
 

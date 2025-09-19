@@ -28,15 +28,19 @@ Invader::Invader(Species _species, glm::vec2 _position)
 	CanCollideWith = ColMaskLaser;
 }
 
+void Invader::DoCollision(const GameObject* partner)
+{
+	this->mState = GameObject::State::Exploding;
+	float AlienWidth = Size.x;
+	this->Sprite = &ResourceManager::GetTexture("invader_explosion");
+	// adjust size and position to center explosion sprite
+	Size = glm::vec2(Sprite->Width, Sprite->Height);
+	Position.x -= (Size.x - AlienWidth) / 2;
+}
+
 void Invader::Update(float dt)
 {
-	if (mState == GameObject::State::Collided)
-	{
-		mState = GameObject::State::Exploding;
-		Sprite = &ResourceManager::GetTexture("invader_explosion");
-	}
-
-	else if (mState == GameObject::State::Exploding)
+	if (mState == GameObject::State::Exploding)
 	{
 		if (ExplosionTimer > 0.2f)
 		{

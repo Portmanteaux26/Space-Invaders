@@ -20,7 +20,8 @@ public:
 	Missile* pMissile;
 
 	Invader(Species _species, glm::vec2 _position);
-	virtual void Update(float dt) override;
+	void DoCollision(const GameObject* partner) override;
+	void Update(float dt) override;
 	void AssignMissile(Missile* _pMissile);
 
 private:

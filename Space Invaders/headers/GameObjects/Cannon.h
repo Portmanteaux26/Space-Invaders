@@ -11,8 +11,8 @@ public:
     Laser* pLaser;
     
     Cannon();
-    ~Cannon();
-    virtual void Update(float dt) override;
+    void DoCollision(const GameObject* partner);
+    void Update(float dt) override;
     void AssignLaser(Laser* _pLaser);
 
 private:
