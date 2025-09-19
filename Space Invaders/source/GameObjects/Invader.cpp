@@ -1,11 +1,13 @@
 #include "Invader.h"
 #include "InvaderController.h"
+#include "Missile.h"
 #include "ResourceManager.h"
 
 
 Invader::Invader(Species _species, glm::vec2 _position)
 	: GameObject()
 	, mSpecies(_species)
+	, pMissile(nullptr)
 {
 	if (mSpecies == Invader::Species::Squid)
 	{
@@ -60,7 +62,17 @@ void Invader::Update(float dt)
 			Position.x += VelocityX;
 			IdleAnimation();
 		}
+		// roll to see if missile is fired
+		if (rand() % 10000 < 15)
+		{
+			pMissile->Shoot(this);
+		}
 	}
+}
+
+void Invader::AssignMissile(Missile* _pMissile)
+{
+	pMissile = _pMissile;
 }
 
 void Invader::IdleAnimation()

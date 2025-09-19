@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Invader.h"
 #include "ObjectManager.h"
+#include "Missile.h"
 #include "ResourceManager.h"
 
 
@@ -48,6 +49,11 @@ void Game::LoadTextures() const
     ResourceManager::LoadTexture("resources/textures/octopus_down.png", true, "octopus_down");
     ResourceManager::LoadTexture("resources/textures/octopus_up.png", true, "octopus_up");
     ResourceManager::LoadTexture("resources/textures/invader_explosion.png", true, "invader_explosion");
+    ResourceManager::LoadTexture("resources/textures/plunger_0.png", true, "plunger_0");
+    ResourceManager::LoadTexture("resources/textures/plunger_1.png", true, "plunger_1");
+    ResourceManager::LoadTexture("resources/textures/plunger_2.png", true, "plunger_2");
+    ResourceManager::LoadTexture("resources/textures/plunger_3.png", true, "plunger_3");
+    ResourceManager::LoadTexture("resources/textures/missile_explosion.png", true, "missile_explosion");
 }
 
 void Game::ConfigureGameObjects()
@@ -61,6 +67,13 @@ void Game::ConfigureGameObjects()
     ObjectManager::Get().Add(PlayerLaser);
     // configure Invaders
     ConfigureInvaders();
+    // configure missiles
+    Missile* Plunger = new Missile();
+    ObjectManager::Get().Add(Plunger);
+    for (Invader* invader : iController.InvaderGroup)
+    {
+        invader->AssignMissile(Plunger);
+    }
 }
 
 void Game::ConfigureInvaders()

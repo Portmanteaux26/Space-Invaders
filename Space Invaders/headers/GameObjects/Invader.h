@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Missile.h"
 
 
 class Invader : public GameObject
@@ -15,9 +16,12 @@ public:
 	float VelocityX = 8.0f;
 	float VelocityY = 32.0f;
 	Species mSpecies;
+	// holds a pointer to a missile
+	Missile* pMissile;
 
 	Invader(Species _species, glm::vec2 _position);
 	virtual void Update(float dt) override;
+	void AssignMissile(Missile* _pMissile);
 
 private:
 	float ExplosionTimer = 0.0f;

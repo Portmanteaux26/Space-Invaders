@@ -18,13 +18,13 @@ enum class InvaderMovementState
 class InvaderController
 {
 public:
+    std::vector<Invader*> InvaderGroup;
     static InvaderMovementState MovementState;
 
     void Add(Invader* pInvader);
     void Update(float dt);
 
 private:
-    std::vector<Invader*> InvaderGroup;
     float TimeElapsed = 0.0f;
 
     bool ShouldStepDown() const;

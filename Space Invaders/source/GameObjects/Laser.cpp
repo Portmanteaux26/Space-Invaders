@@ -9,8 +9,8 @@ Laser::Laser()
     Size = glm::vec2(Sprite->Width, Sprite->Height);
     mState = GameObject::State::Destroyed;
     CollisionID = ColMaskLaser;
-    CanCollideWith = CollisionMask(ColMaskInvader | ColMaskBunker);
-    VelocityY = 500.0f;
+    CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile | ColMaskBunker);
+    VelocityY = 750.0f;
 }
 
 void Laser::Update(float dt)
@@ -29,7 +29,6 @@ void Laser::Update(float dt)
             mState = GameObject::State::Collided;
         }
     }
-    
 }
 
 void Laser::Shoot(const GameObject* shooter)

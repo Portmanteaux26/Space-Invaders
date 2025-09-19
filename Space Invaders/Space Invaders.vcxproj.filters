@@ -15,6 +15,7 @@
     <ClInclude Include="headers\GameObjects\Invader.h" />
     <ClInclude Include="headers\Managers\ObjectManager.h" />
     <ClInclude Include="headers\InvaderController.h" />
+    <ClInclude Include="headers\GameObjects\Missile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\Managers\ObjectManager.cpp" />
     <ClCompile Include="source\InvaderController.cpp" />
+    <ClCompile Include="source\GameObjects\Missile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />
@@ -47,5 +49,10 @@
     <Image Include="resources\textures\squid_down.png" />
     <Image Include="resources\textures\squid_up.png" />
     <Image Include="resources\textures\invader_explosion.png" />
+    <Image Include="resources\textures\plunger_0.png" />
+    <Image Include="resources\textures\plunger_1.png" />
+    <Image Include="resources\textures\plunger_2.png" />
+    <Image Include="resources\textures\plunger_3.png" />
+    <Image Include="resources\textures\missile_explosion.png" />
   </ItemGroup>
 </Project>

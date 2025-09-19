@@ -16,7 +16,7 @@ public:
     void AssignLaser(Laser* _pLaser);
 
 private:
-    float VelocityX;
+    float VelocityX = 500.0f;
     
     void ProcessInput(float dt);
 };

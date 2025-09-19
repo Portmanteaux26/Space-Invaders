@@ -9,6 +9,7 @@
 
 Cannon::Cannon()
 	: GameObject()
+    , pLaser(nullptr)
 {
     Sprite = &ResourceManager::GetTexture("cannon");
     Size = glm::vec2(Sprite->Width, Sprite->Height);
@@ -18,11 +19,27 @@ Cannon::Cannon()
     CollisionID = ColMaskCannon;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile);
     Color = glm::vec3(0.0f, 1.0f, 0.0f);
-    pLaser = nullptr;
-    VelocityX = 500.0f;
 }
 
 Cannon::~Cannon() {}
+
+void Cannon::Update(float dt)
+{
+    if (mState == GameObject::State::Collided)
+    {
+        mState = GameObject::State::Destroyed;
+    }
+
+    else if (mState == GameObject::State::Active)
+    {
+        ProcessInput(dt);
+    }
+}
+
+void Cannon::AssignLaser(Laser* _pLaser)
+{
+    pLaser = _pLaser;
+}
 
 void Cannon::ProcessInput(float dt)
 {
@@ -57,22 +74,4 @@ void Cannon::ProcessInput(float dt)
     {
         pLaser->Shoot(this);
     }
-}
-
-void Cannon::Update(float dt)
-{
-    if (mState == GameObject::State::Collided)
-    {
-        mState = GameObject::State::Destroyed;
-    }
-
-    else if (mState == GameObject::State::Active)
-    {
-        ProcessInput(dt);
-    }
-}
-
-void Cannon::AssignLaser(Laser* _pLaser)
-{
-    pLaser = _pLaser;
 }

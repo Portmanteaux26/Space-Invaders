@@ -25,6 +25,7 @@
     <ClInclude Include="headers\GameObjects\GameObject.h" />
     <ClInclude Include="headers\GameObjects\Invader.h" />
     <ClInclude Include="headers\GameObjects\Laser.h" />
+    <ClInclude Include="headers\GameObjects\Missile.h" />
     <ClInclude Include="headers\InvaderController.h" />
     <ClInclude Include="headers\Managers\InputManager.h" />
     <ClInclude Include="headers\Managers\ObjectManager.h" />
@@ -40,6 +41,7 @@
     <ClCompile Include="source\GameObjects\GameObject.cpp" />
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\GameObjects\Laser.cpp" />
+    <ClCompile Include="source\GameObjects\Missile.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\InvaderController.cpp" />
     <ClCompile Include="source\Managers\InputManager.cpp" />
@@ -61,6 +63,11 @@
     <Image Include="resources\textures\crab_up.png" />
     <Image Include="resources\textures\invader_explosion.png" />
     <Image Include="resources\textures\laser.png" />
+    <Image Include="resources\textures\missile_explosion.png" />
+    <Image Include="resources\textures\plunger_0.png" />
+    <Image Include="resources\textures\plunger_1.png" />
+    <Image Include="resources\textures\plunger_2.png" />
+    <Image Include="resources\textures\plunger_3.png" />
     <Image Include="resources\textures\octopus_up.png" />
     <Image Include="resources\textures\octopus_down.png" />
     <Image Include="resources\textures\squid_down.png" />
