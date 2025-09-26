@@ -23,14 +23,37 @@ Cannon::Cannon()
 
 void Cannon::DoCollision(const GameObject* partner)
 {
-    const float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
-    const float y = GameConstants::PlayableY - this->Size.y - 128.0f;
-    Position = glm::vec2(x, y);
+    if (partner->CollisionID & ColMaskMissile)
+    {
+        mState = GameObject::State::Exploding;
+        Sprite = &ResourceManager::GetTexture("cannon_explosion_0");
+        // adjust size and x pos to center explosion
+        Size = glm::vec2(Sprite->Width, Sprite->Height);
+        Position.x -= ExplosionOffset;
+    }
 }
 
 void Cannon::Update(float dt)
 {
-    if (mState == GameObject::State::Active)
+    if (mState == GameObject::State::Exploding)
+    {
+        if (ExplosionTimer > 1.0f)
+        {
+            mState = GameObject::State::Active;
+            Sprite = &ResourceManager::GetTexture("cannon");
+            Size = glm::vec2(Sprite->Width, Sprite->Height);
+            const float x = GameConstants::PlayableX / 2.0f - this->Size.x / 2.0f;
+            const float y = GameConstants::PlayableY - this->Size.y - 128.0f;
+            Position = glm::vec2(x, y);
+            ExplosionTimer = 0.0f;
+        }
+        else
+        {
+			ExplosionAnimCycle(dt);
+			ExplosionTimer += dt;
+        }
+    }
+    else if (mState == GameObject::State::Active)
     {
         ProcessInput(dt);
     }
@@ -73,5 +96,25 @@ void Cannon::ProcessInput(float dt)
     else if (InputManager::Get().keys[GLFW_KEY_SPACE])
     {
         pLaser->Shoot(this);
+    }
+}
+
+void Cannon::ExplosionAnimCycle(float dt)
+{
+    if (AnimTimer > 0.1f)
+    {
+        if (Sprite == &ResourceManager::GetTexture("cannon_explosion_0"))
+        {
+			Sprite = &ResourceManager::GetTexture("cannon_explosion_1");
+        }
+        else
+        {
+			Sprite = &ResourceManager::GetTexture("cannon_explosion_0");
+        }
+		AnimTimer = 0.0f;
+    }
+    else
+    {
+		AnimTimer += dt;
     }
 }

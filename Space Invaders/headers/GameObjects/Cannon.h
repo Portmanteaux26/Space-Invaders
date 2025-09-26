@@ -17,6 +17,10 @@ public:
 
 private:
     float VelocityX = 500.0f;
+    float ExplosionOffset = 0.0f;
+    float ExplosionTimer = 0.0f;
+	float AnimTimer = 0.0f;
     
     void ProcessInput(float dt);
+	void ExplosionAnimCycle(float dt);
 };

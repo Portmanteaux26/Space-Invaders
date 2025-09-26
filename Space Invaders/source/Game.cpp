@@ -41,6 +41,8 @@ void Game::BuildRenderer()
 void Game::LoadTextures() const
 {
     ResourceManager::LoadTexture("resources/textures/cannon.png", true, "cannon");
+	ResourceManager::LoadTexture("resources/textures/cannon_explosion_0.png", true, "cannon_explosion_0");
+	ResourceManager::LoadTexture("resources/textures/cannon_explosion_1.png", true, "cannon_explosion_1");
     ResourceManager::LoadTexture("resources/textures/laser.png", true, "laser");
     ResourceManager::LoadTexture("resources/textures/squid_down.png", true, "squid_down");
     ResourceManager::LoadTexture("resources/textures/squid_up.png", true, "squid_up");

@@ -24,6 +24,9 @@ void Missile::DoCollision(const GameObject* partner)
 	{
 		mState = GameObject::State::Exploding;
 		Sprite = &ResourceManager::GetTexture("missile_explosion");
+		// adjust size and x pos to center explosion
+		Size = glm::vec2(Sprite->Width, Sprite->Height);
+		Position.x -= ExplosionOffset;
 	}
 	else
 	{
@@ -39,6 +42,9 @@ void Missile::Update(float dt)
 		{
 			mState = GameObject::State::Destroyed;
 			Sprite = AnimSprites[0];
+			// adjust size and x pos to center invader
+			Size = glm::vec2(Sprite->Width, Sprite->Height);
+			Position.x += ExplosionOffset;
 			ExplosionTimer = 0.0f;
 		}
 		else
@@ -53,7 +59,11 @@ void Missile::Update(float dt)
 		if (Position.y + Size.y >= GameConstants::PlayableY)
 		{
 			mState = GameObject::State::Exploding;
-			this->Sprite = &ResourceManager::GetTexture("missile_explosion");
+			Sprite = &ResourceManager::GetTexture("missile_explosion");
+			const float MissileWidth = Size.x;
+			// adjust size and pos to center explosion
+			Size = glm::vec2(Sprite->Width, Sprite->Height);
+			Position.x -= (Size.x - MissileWidth) / 2;
 		}
 		else
 		{
