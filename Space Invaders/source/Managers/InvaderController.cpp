@@ -1,5 +1,6 @@
 #include "Invader.h"
 #include "InvaderController.h"
+#include "ObjectManager.h"
 
 
 // initialize static
@@ -14,7 +15,13 @@ void InvaderController::Update(float dt)
 {
 	TimeElapsed += dt;
 	MovementState = InvaderMovementState::None;
-	if (TimeElapsed >= GameConstants::MaxStepSpeed)
+	// interpolate step speed based on number of invaders left
+	float active = static_cast<float>(ObjectManager::Get().ActiveInvaders);
+	float total = static_cast<float>(InvaderGroup.size());
+	float ratio = 1.0f - active / total;
+	float StepSpeed = GameConstants::MaxStepSpeed + ratio * (GameConstants::MinStepSpeed - GameConstants::MaxStepSpeed);
+	// execute correct step if enough time has elapsed
+	if (TimeElapsed >= StepSpeed)
 	{
 		if (ShouldStepDown())
 		{

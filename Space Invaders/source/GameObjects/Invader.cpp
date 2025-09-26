@@ -1,6 +1,7 @@
 #include "Invader.h"
 #include "InvaderController.h"
 #include "Missile.h"
+#include "ObjectManager.h"
 #include "ResourceManager.h"
 
 
@@ -36,6 +37,8 @@ void Invader::DoCollision(const GameObject* partner)
 	// adjust size and position to center explosion sprite
 	Size = glm::vec2(Sprite->Width, Sprite->Height);
 	Position.x -= (Size.x - AlienWidth) / 2;
+	// decrement active invader count
+	ObjectManager::Get().ActiveInvaders--;
 }
 
 void Invader::Update(float dt)

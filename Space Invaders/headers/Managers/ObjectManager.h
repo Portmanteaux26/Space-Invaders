@@ -9,6 +9,7 @@ class ObjectManager
 {
 public:
 	std::vector<GameObject*> GameObjects;
+	std::size_t ActiveInvaders;
 
 	static ObjectManager& Get();
 	void Add(GameObject* NewObject);

@@ -13,6 +13,6 @@ struct GameConstants
 	static constexpr float InvaderInitX = (PlayableX - (InvadersPerRow * InvaderCellX)) / 2.0f;
 	static constexpr float InvaderInitY = 64.0f * 4.0f;
 	// time between steps in seconds
-	static constexpr float MaxStepSpeed = 0.7f;
-	static constexpr float MinStepSpeed = 0.4f;
+	static constexpr float MaxStepSpeed = 0.9f;
+	static constexpr float MinStepSpeed = 0.015f;
 };

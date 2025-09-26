@@ -115,6 +115,7 @@ void Game::ConfigureInvaders()
         // increment Y offset for next row
         rowStartPos.y += GameConstants::InvaderCellY;
     }
+	ObjectManager::Get().ActiveInvaders = iController.InvaderGroup.size();
 }
 
 void Game::ProcessInput(float dt) const
@@ -132,6 +133,12 @@ void Game::Update(float dt)
     {
         iController.Update(dt);
         ObjectManager::Get().Update(dt);
+        if (ObjectManager::Get().ActiveInvaders == 0)
+        {
+			iController.InvaderGroup.clear();
+			ObjectManager::Get().Clear();
+			ConfigureGameObjects();
+		}
     }
 }
 

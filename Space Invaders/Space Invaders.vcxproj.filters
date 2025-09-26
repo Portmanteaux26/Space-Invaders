@@ -14,7 +14,7 @@
     <ClInclude Include="headers\GameConstants.h" />
     <ClInclude Include="headers\GameObjects\Invader.h" />
     <ClInclude Include="headers\Managers\ObjectManager.h" />
-    <ClInclude Include="headers\InvaderController.h" />
+    <ClInclude Include="headers\Managers\InvaderController.h" />
     <ClInclude Include="headers\GameObjects\Missile.h" />
   </ItemGroup>
   <ItemGroup>
@@ -32,7 +32,7 @@
     <ClCompile Include="source\GameObjects\Laser.cpp" />
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\Managers\ObjectManager.cpp" />
-    <ClCompile Include="source\InvaderController.cpp" />
+    <ClCompile Include="source\Managers\InvaderController.cpp" />
     <ClCompile Include="source\GameObjects\Missile.cpp" />
   </ItemGroup>
   <ItemGroup>
