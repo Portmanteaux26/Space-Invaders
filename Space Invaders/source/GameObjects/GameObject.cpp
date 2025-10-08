@@ -2,13 +2,13 @@
 
 
 GameObject::GameObject()
-    : Size(glm::vec2(0.0f))
-    , Position(glm::vec2(0.0f))
-    , mState(GameObject::State::Active)
+    : mState(GameObject::State::Active)
     , CollisionID()
     , CanCollideWith()
+    , Size(glm::vec2(0.0f))
+    , Position(glm::vec2(0.0f))
     , Sprite(nullptr)
-    , Color(glm::vec3(1.0f))
+    , Color(glm::vec3(1.0f))    // white
     , Rotation(0.0f)
 { }
 

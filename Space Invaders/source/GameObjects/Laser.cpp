@@ -10,7 +10,7 @@ Laser::Laser()
     mState = GameObject::State::Destroyed;
     CollisionID = ColMaskLaser;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile | ColMaskBunker);
-    VelocityY = 750.0f;
+    Color = glm::vec3(0.0f, 1.0f, 0.0f);    // green
 }
 
 void Laser::Update(float dt)

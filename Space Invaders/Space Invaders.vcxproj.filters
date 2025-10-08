@@ -16,6 +16,8 @@
     <ClInclude Include="headers\Managers\ObjectManager.h" />
     <ClInclude Include="headers\Managers\InvaderController.h" />
     <ClInclude Include="headers\GameObjects\Missile.h" />
+    <ClInclude Include="headers\GameObjects\ScoreDisplay.h" />
+    <ClInclude Include="headers\Managers\ScoreManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
@@ -34,6 +36,8 @@
     <ClCompile Include="source\Managers\ObjectManager.cpp" />
     <ClCompile Include="source\Managers\InvaderController.cpp" />
     <ClCompile Include="source\GameObjects\Missile.cpp" />
+    <ClCompile Include="source\GameObjects\ScoreDisplay.cpp" />
+    <ClCompile Include="source\Managers\ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\sprite.vs" />
@@ -54,5 +58,19 @@
     <Image Include="resources\textures\plunger_2.png" />
     <Image Include="resources\textures\plunger_3.png" />
     <Image Include="resources\textures\missile_explosion.png" />
+    <Image Include="resources\textures\cannon_explosion_0.png" />
+    <Image Include="resources\textures\cannon_explosion_1.png" />
+    <Image Include="resources\textures\ufo.png" />
+    <Image Include="resources\textures\ufo_explosion.png" />
+    <Image Include="resources\textures\number_0.png" />
+    <Image Include="resources\textures\number_1.png" />
+    <Image Include="resources\textures\number_2.png" />
+    <Image Include="resources\textures\number_3.png" />
+    <Image Include="resources\textures\number_4.png" />
+    <Image Include="resources\textures\number_5.png" />
+    <Image Include="resources\textures\number_6.png" />
+    <Image Include="resources\textures\number_7.png" />
+    <Image Include="resources\textures\number_8.png" />
+    <Image Include="resources\textures\number_9.png" />
   </ItemGroup>
 </Project>

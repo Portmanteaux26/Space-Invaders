@@ -11,5 +11,5 @@ public:
     void Shoot(const GameObject* shooter);
 
 private:
-    float VelocityY;
+    float VelocityY = 750.0f;
 };

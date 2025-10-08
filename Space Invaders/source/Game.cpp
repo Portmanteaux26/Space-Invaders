@@ -1,9 +1,12 @@
 #include "Cannon.h"
 #include "Game.h"
 #include "Invader.h"
+#include "Laser.h"
 #include "ObjectManager.h"
 #include "Missile.h"
 #include "ResourceManager.h"
+#include "ScoreDisplay.h"
+#include "ScoreManager.h"
 
 
 Game::Game()
@@ -18,6 +21,7 @@ Game::~Game()
 {
    delete Renderer;
    ObjectManager::Get().Clear();
+   ScoreManager::Get().ScoreObjects.clear();
 }
 
 void Game::Init()
@@ -56,6 +60,19 @@ void Game::LoadTextures() const
     ResourceManager::LoadTexture("resources/textures/plunger_2.png", true, "plunger_2");
     ResourceManager::LoadTexture("resources/textures/plunger_3.png", true, "plunger_3");
     ResourceManager::LoadTexture("resources/textures/missile_explosion.png", true, "missile_explosion");
+	ResourceManager::LoadTexture("resources/textures/ufo.png", true, "ufo");
+	ResourceManager::LoadTexture("resources/textures/ufo_explosion.png", true, "ufo_explosion");
+	ResourceManager::LoadTexture("resources/textures/number_0.png", true, "number_0");
+	ResourceManager::LoadTexture("resources/textures/number_1.png", true, "number_1");
+	ResourceManager::LoadTexture("resources/textures/number_2.png", true, "number_2");
+	ResourceManager::LoadTexture("resources/textures/number_3.png", true, "number_3");
+	ResourceManager::LoadTexture("resources/textures/number_4.png", true, "number_4");
+	ResourceManager::LoadTexture("resources/textures/number_5.png", true, "number_5");
+	ResourceManager::LoadTexture("resources/textures/number_6.png", true, "number_6");
+	ResourceManager::LoadTexture("resources/textures/number_7.png", true, "number_7");
+	ResourceManager::LoadTexture("resources/textures/number_8.png", true, "number_8");
+	ResourceManager::LoadTexture("resources/textures/number_9.png", true, "number_9");
+
 }
 
 void Game::ConfigureGameObjects()
@@ -76,6 +93,16 @@ void Game::ConfigureGameObjects()
     {
         invader->AssignMissile(Plunger);
     }
+	// configure score displays
+	ScoreDisplay* ScoreHundreds = new ScoreDisplay(ScoreDisplay::DigitPlace::Hundreds);
+	ObjectManager::Get().Add(ScoreHundreds);
+	ScoreManager::Get().Add(ScoreHundreds);
+	ScoreDisplay* ScoreTens = new ScoreDisplay(ScoreDisplay::DigitPlace::Tens);
+	ObjectManager::Get().Add(ScoreTens);
+    ScoreManager::Get().Add(ScoreTens);
+	ScoreDisplay* ScoreOnes = new ScoreDisplay(ScoreDisplay::DigitPlace::Ones);
+	ObjectManager::Get().Add(ScoreOnes);
+    ScoreManager::Get().Add(ScoreOnes);
 }
 
 void Game::ConfigureInvaders()

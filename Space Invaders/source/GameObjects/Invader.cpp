@@ -3,6 +3,7 @@
 #include "Missile.h"
 #include "ObjectManager.h"
 #include "ResourceManager.h"
+#include "ScoreManager.h"
 
 
 Invader::Invader(Species _species, glm::vec2 _position)
@@ -31,14 +32,30 @@ Invader::Invader(Species _species, glm::vec2 _position)
 
 void Invader::DoCollision(const GameObject* partner)
 {
-	this->mState = GameObject::State::Exploding;
-	float AlienWidth = Size.x;
-	this->Sprite = &ResourceManager::GetTexture("invader_explosion");
-	// adjust size and position to center explosion sprite
-	Size = glm::vec2(Sprite->Width, Sprite->Height);
-	Position.x -= (Size.x - AlienWidth) / 2;
-	// decrement active invader count
-	ObjectManager::Get().ActiveInvaders--;
+	if (partner->CollisionID & ColMaskLaser)
+	{
+		this->mState = GameObject::State::Exploding;
+		float AlienWidth = Size.x;
+		this->Sprite = &ResourceManager::GetTexture("invader_explosion");
+		// adjust size and position to center explosion sprite
+		Size = glm::vec2(Sprite->Width, Sprite->Height);
+		Position.x -= (Size.x - AlienWidth) / 2;
+		// decrement active invader count
+		ObjectManager::Get().ActiveInvaders--;
+		// update score
+		if (mSpecies == Invader::Species::Squid)
+		{
+			ScoreManager::Get().UpdateScore(30);
+		}
+		else if (mSpecies == Invader::Species::Crab)
+		{
+			ScoreManager::Get().UpdateScore(20);
+		}
+		else
+		{
+			ScoreManager::Get().UpdateScore(10);
+		}
+	}
 }
 
 void Invader::Update(float dt)

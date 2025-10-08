@@ -22,9 +22,10 @@ public:
         ColMaskNone = 0,
         ColMaskCannon = 1 << 0,
         ColMaskLaser = 1 << 1,
-        ColMaskInvader = 1 << 2,
-        ColMaskMissile = 1 << 3,
-        ColMaskBunker = 1 << 4
+        ColMaskBunker = 1 << 2,
+        ColMaskInvader = 1 << 3,
+        ColMaskMissile = 1 << 4,
+		ColMaskUFO = 1 << 5
     };
     CollisionMask CollisionID;
     CollisionMask CanCollideWith;

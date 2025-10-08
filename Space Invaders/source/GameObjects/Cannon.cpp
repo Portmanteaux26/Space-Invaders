@@ -18,12 +18,12 @@ Cannon::Cannon()
     Position = glm::vec2(x, y);
     CollisionID = ColMaskCannon;
     CanCollideWith = CollisionMask(ColMaskInvader | ColMaskMissile);
-    Color = glm::vec3(0.0f, 1.0f, 0.0f);
+    Color = glm::vec3(0.0f, 1.0f, 0.0f);    // green
 }
 
 void Cannon::DoCollision(const GameObject* partner)
 {
-    if (partner->CollisionID & ColMaskMissile)
+    if (partner->CollisionID & CollisionMask(ColMaskInvader | ColMaskMissile))
     {
         mState = GameObject::State::Exploding;
         Sprite = &ResourceManager::GetTexture("cannon_explosion_0");

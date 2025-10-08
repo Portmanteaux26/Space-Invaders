@@ -26,10 +26,12 @@
     <ClInclude Include="headers\GameObjects\Invader.h" />
     <ClInclude Include="headers\GameObjects\Laser.h" />
     <ClInclude Include="headers\GameObjects\Missile.h" />
+    <ClInclude Include="headers\GameObjects\ScoreDisplay.h" />
     <ClInclude Include="headers\Managers\InvaderController.h" />
     <ClInclude Include="headers\Managers\InputManager.h" />
     <ClInclude Include="headers\Managers\ObjectManager.h" />
     <ClInclude Include="headers\Managers\ResourceManager.h" />
+    <ClInclude Include="headers\Managers\ScoreManager.h" />
     <ClInclude Include="headers\Rendering\Shader.h" />
     <ClInclude Include="headers\Rendering\SpriteRenderer.h" />
     <ClInclude Include="headers\Rendering\stb_image.h" />
@@ -42,12 +44,14 @@
     <ClCompile Include="source\GameObjects\Invader.cpp" />
     <ClCompile Include="source\GameObjects\Laser.cpp" />
     <ClCompile Include="source\GameObjects\Missile.cpp" />
+    <ClCompile Include="source\GameObjects\ScoreDisplay.cpp" />
     <ClCompile Include="source\glad.c" />
     <ClCompile Include="source\Managers\InvaderController.cpp" />
     <ClCompile Include="source\Managers\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Managers\ObjectManager.cpp" />
     <ClCompile Include="source\Managers\ResourceManager.cpp" />
+    <ClCompile Include="source\Managers\ScoreManager.cpp" />
     <ClCompile Include="source\Rendering\Shader.cpp" />
     <ClCompile Include="source\Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="source\Rendering\stb_image.cpp" />
@@ -59,11 +63,23 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\cannon.png" />
+    <Image Include="resources\textures\cannon_explosion_0.png" />
+    <Image Include="resources\textures\cannon_explosion_1.png" />
     <Image Include="resources\textures\crab_down.png" />
     <Image Include="resources\textures\crab_up.png" />
     <Image Include="resources\textures\invader_explosion.png" />
     <Image Include="resources\textures\laser.png" />
     <Image Include="resources\textures\missile_explosion.png" />
+    <Image Include="resources\textures\number_0.png" />
+    <Image Include="resources\textures\number_1.png" />
+    <Image Include="resources\textures\number_2.png" />
+    <Image Include="resources\textures\number_3.png" />
+    <Image Include="resources\textures\number_4.png" />
+    <Image Include="resources\textures\number_5.png" />
+    <Image Include="resources\textures\number_6.png" />
+    <Image Include="resources\textures\number_7.png" />
+    <Image Include="resources\textures\number_8.png" />
+    <Image Include="resources\textures\number_9.png" />
     <Image Include="resources\textures\plunger_0.png" />
     <Image Include="resources\textures\plunger_1.png" />
     <Image Include="resources\textures\plunger_2.png" />
@@ -72,6 +88,8 @@
     <Image Include="resources\textures\octopus_down.png" />
     <Image Include="resources\textures\squid_down.png" />
     <Image Include="resources\textures\squid_up.png" />
+    <Image Include="resources\textures\ufo.png" />
+    <Image Include="resources\textures\ufo_explosion.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
