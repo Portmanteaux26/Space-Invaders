@@ -20,7 +20,8 @@ void ScoreManager::UpdateScore(unsigned int points)
 	CurrentScore += points;
 	std::cout << "Score: " << CurrentScore << std::endl;
 
-	ScoreObjects[0]->value = (CurrentScore / 100) % 10; // Hundreds
-	ScoreObjects[1]->value = (CurrentScore / 10) % 10;  // Tens
-	ScoreObjects[2]->value = CurrentScore % 10;         // Ones
+	ScoreObjects[0]->value = (CurrentScore / 1000) % 10;	// Thousands
+	ScoreObjects[1]->value = (CurrentScore / 100) % 10;		// Hundreds
+	ScoreObjects[2]->value = (CurrentScore / 10) % 10;		// Tens
+	ScoreObjects[3]->value = CurrentScore % 10;				// Ones
 }

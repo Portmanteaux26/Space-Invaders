@@ -35,7 +35,7 @@ void Invader::DoCollision(const GameObject* partner)
 	if (partner->CollisionID & ColMaskLaser)
 	{
 		this->mState = GameObject::State::Exploding;
-		float AlienWidth = Size.x;
+		const float AlienWidth = Size.x;
 		this->Sprite = &ResourceManager::GetTexture("invader_explosion");
 		// adjust size and position to center explosion sprite
 		Size = glm::vec2(Sprite->Width, Sprite->Height);

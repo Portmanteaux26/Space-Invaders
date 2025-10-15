@@ -11,6 +11,7 @@ public:
 		Ones,
 		Tens,
 		Hundreds,
+		Thousands
 	};
 	DigitPlace mDigitPlace;
 	unsigned int value = 0;

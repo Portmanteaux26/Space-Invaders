@@ -16,10 +16,10 @@ void InvaderController::Update(float dt)
 	TimeElapsed += dt;
 	MovementState = InvaderMovementState::None;
 	// interpolate step speed based on number of invaders left
-	float active = static_cast<float>(ObjectManager::Get().ActiveInvaders);
-	float total = static_cast<float>(InvaderGroup.size());
-	float ratio = 1.0f - active / total;
-	float StepSpeed = GameConstants::MaxStepSpeed + ratio * (GameConstants::MinStepSpeed - GameConstants::MaxStepSpeed);
+	const float active = static_cast<float>(ObjectManager::Get().ActiveInvaders);
+	const float total = static_cast<float>(InvaderGroup.size());
+	const float ratio = 1.0f - active / total;
+	const float StepSpeed = GameConstants::MaxStepSpeed + ratio * (GameConstants::MinStepSpeed - GameConstants::MaxStepSpeed);
 	// execute correct step if enough time has elapsed
 	if (TimeElapsed >= StepSpeed)
 	{

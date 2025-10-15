@@ -94,6 +94,9 @@ void Game::ConfigureGameObjects()
         invader->AssignMissile(Plunger);
     }
 	// configure score displays
+	ScoreDisplay* ScoreThousands = new ScoreDisplay(ScoreDisplay::DigitPlace::Thousands);
+	ObjectManager::Get().Add(ScoreThousands);
+	ScoreManager::Get().Add(ScoreThousands);
 	ScoreDisplay* ScoreHundreds = new ScoreDisplay(ScoreDisplay::DigitPlace::Hundreds);
 	ObjectManager::Get().Add(ScoreHundreds);
 	ScoreManager::Get().Add(ScoreHundreds);

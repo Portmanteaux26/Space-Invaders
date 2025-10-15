@@ -13,9 +13,13 @@ ScoreDisplay::ScoreDisplay(DigitPlace _place)
 
 	if (mDigitPlace == DigitPlace::Ones)
 	{
-		Position.x += 2 * Size.x;
+		Position.x += 3 * Size.x;
 	}
 	else if (mDigitPlace == DigitPlace::Tens)
+	{
+		Position.x += 2 * Size.x;
+	}
+	else if (mDigitPlace == DigitPlace::Hundreds)
 	{
 		Position.x += Size.x;
 	}
